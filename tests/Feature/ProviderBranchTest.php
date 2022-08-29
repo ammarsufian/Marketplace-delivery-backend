@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use PHPUnit\Framework\Test;
 use Tests\FlowTestCase;
 use App\Domains\Authentication\Models\User;
 use App\Domains\AccountManagement\Models\Branch;
@@ -15,6 +16,7 @@ class ProviderBranchTest extends FlowTestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->markTestSkipped('should be resolved by Hasant.');
         $this->user = User::factory()->create()
             ->assignRole(User::PROVIDER_ROLE);
         $this->branch = Branch::factory()->create();
