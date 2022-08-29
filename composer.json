@@ -1,0 +1,93 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The Laravel Framework.",
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^7.4|^8.1",
+        "ext-json": "*",
+        "64robots/nova-fields": "^0.22.0",
+        "cova/theme": "*",
+        "ebess/advanced-nova-media-library": "^3.6",
+        "fruitcake/laravel-cors": "^2.0",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "kreait/firebase-php": "^6.8",
+        "laravel/framework": "^8.75",
+        "laravel/horizon": "^5.9",
+        "laravel/nova": "*",
+        "laravel/sanctum": "^2.11",
+        "laravel/telescope": "^4.8",
+        "laravel/tinker": "^2.5",
+        "league/flysystem-aws-s3-v3": "~1.0",
+        "optimistdigital/nova-multiselect-field": "^2.3",
+        "sadekd/nova-opening-hours-field": "^v2.0.0",
+        "spatie/laravel-medialibrary": "^9.12",
+        "spatie/laravel-permission": "^5.5",
+        "spatie/laravel-translatable": "^4.6",
+        "vyuldashev/nova-permission": "^3.1"
+    },
+    "require-dev": {
+        "facade/ignition": "^2.5",
+        "fakerphp/faker": "^1.9.1",
+        "laravel/sail": "^1.0.1",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^5.10",
+        "phpunit/phpunit": "^9.5.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        },
+        "files": [
+            "app/Helpers/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "repositories": {
+        "nova": {
+            "type": "path",
+            "url": "./nova"
+        },
+        "0": {
+            "type": "path",
+            "url": "./nova-components/Theme"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

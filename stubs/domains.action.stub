@@ -1,0 +1,12 @@
+<?php
+
+namespace $NAMESPACE$;
+use App\Domains\Interfaces\Actionable;
+
+class $CLASS_NAME$Action implements Actionable
+{
+    public function execute()
+    {
+
+    }
+}

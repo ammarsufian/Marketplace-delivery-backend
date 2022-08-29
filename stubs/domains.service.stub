@@ -1,0 +1,13 @@
+<?php
+
+namespace $NAMESPACE$;
+
+class $CLASS_NAME$Service
+{
+    public function pleaseReplaceMe($action)
+    {
+        $results = $action->execute();
+        // do whatever you want
+        return $results;
+    }
+}
