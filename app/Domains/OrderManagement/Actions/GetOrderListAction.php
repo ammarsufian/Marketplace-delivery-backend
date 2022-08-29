@@ -26,12 +26,13 @@ class GetOrderListAction implements Actionable
     public function execute()
     {
         return Order::query()
-            ->whereBetween('created_at', [$this->date->startOfDay(), $this->date->endOfDay()])
             ->when($this->user->hasRole('application'), function (Builder $query) {
                 return $query->where('user_id', $this->user->id);
             })
             ->when($this->user->hasRole(User::PROVIDER_ROLE), function (Builder $query) {
-                return $query->whereIn('branch_id', $this->user->branches->pluck('id'));
+                return $query->whereIn('branch_id', $this->user->branches->pluck('id'))
+                    ->where('created_at', '>=', $this->date->startOfDay());
+//                    ->where('created_at', '<=', $this->date->endOfDay());
             })
             ->when($this->request->filled('status'), function (Builder $query) {
                 return $query->where('status', $this->request->get('status'));
