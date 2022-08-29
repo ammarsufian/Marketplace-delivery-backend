@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Domains\AccountManagement\Services;
 
@@ -14,21 +14,21 @@ use App\Domains\AccountManagement\Http\Resources\ProviderBranchResource;
 
 class ProviderBranchService
 {
-    public function show():JsonResource
+    public function show(): JsonResource
     {
         $branch = Auth::user()->branches->first();
         return ProviderBranchResource::make($branch);
-    } 
+    }
+
     public function updateScheduleBranch(ScheduleBranchRequest $request, Branch $branch)
     {
         try {
-            (new UpdateScheduleBranchAction($request,$branch))->execute();
-        }catch (Exception $exception)
-        {
+            $results = (new UpdateScheduleBranchAction($request, $branch))->execute();
+        } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage(),
                 'success' => false
-            ],400);
+            ], 400);
         }
         return ProviderBranchResource::make($branch->refresh());
     }

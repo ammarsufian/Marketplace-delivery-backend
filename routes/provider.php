@@ -13,7 +13,6 @@ Route::post('/login', [ProviderAuthenticationController::class, 'login']);
 
 Route::prefix('orders')->group(function () {
     Route::middleware('auth:sanctum')->get('/', [ProviderOrderController::class, 'index']);
-    Route::middleware('auth:sanctum')->get('/order-date', [ProviderOrderController::class, 'filterOrdersByDate']);
     Route::middleware('auth:sanctum')->put('/{order}/edit', [ProviderOrderController::class, 'updateStatus']);
     Route::middleware('auth:sanctum')->get('/cancel-reasons', OrderCancelReasonListController::class);
 });

@@ -8,24 +8,21 @@ use App\Domains\AccountManagement\Models\Branch;
 use App\Domains\AccountManagement\Http\Requests\ScheduleBranchRequest;
 
 
-
 class UpdateScheduleBranchAction implements Actionable
 {
     protected Request $request;
     protected Branch $branch;
-    public function __construct(ScheduleBranchRequest $request ,Branch $branch)
+
+    public function __construct(ScheduleBranchRequest $request, Branch $branch)
     {
         $this->request = $request;
         $this->branch = $branch;
     }
-    
-    public function execute():Branch
+
+    public function execute(): bool
     {
-        $this->branch->update(
-            [
-                'schedule' => $this->request->get('schedule')
-            ]
-        );
-        return $this->branch;
+        return $this->branch->update([
+            'schedule' => $this->request->get('schedule')
+        ]);
     }
 }

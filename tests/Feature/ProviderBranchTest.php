@@ -30,7 +30,7 @@ class ProviderBranchTest extends FlowTestCase
                 $this->branch,
                 ['schedule' => $this->getSchedule()]
             )
-            ->assertOk()->dd();
+            ->assertOk();
     }
     public function getSchedule(): array
     {

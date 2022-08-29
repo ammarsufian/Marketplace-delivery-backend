@@ -9,9 +9,7 @@ use App\Exceptions\RuleResultException;
 use App\Domains\OrderManagement\Models\Order;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Domains\OrderManagement\Actions\GetOrderListAction;
-use App\Domains\OrderManagement\Actions\GetOrdersByDateAction;
 use App\Domains\OrderManagement\Actions\UpdateOrderStatusAction;
-use App\Domains\OrderManagement\Http\Requests\OrdersDateRequest;
 use App\Domains\OrderManagement\Http\Resources\ProviderOrderResource;
 use App\Domains\OrderManagement\Rules\CheckOrderBelongsToProviderRule;
 use App\Domains\OrderManagement\Http\Requests\UpdateOrderStatusRequest;
@@ -51,11 +49,5 @@ class ProviderOrderService
             'success' => true,
             'data' => ProviderOrderResource::make($order->refresh())
         ]);
-    }
-
-    public function filterOrdersByDate(OrdersDateRequest $request): JsonResource
-    {
-        $orderList = (new GetOrdersByDateAction($request))->execute();
-        return ProviderOrderResource::collection($orderList);
     }
 }

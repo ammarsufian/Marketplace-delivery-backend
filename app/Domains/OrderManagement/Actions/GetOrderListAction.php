@@ -14,16 +14,19 @@ class GetOrderListAction implements Actionable
 {
     protected Request $request;
     protected User $user;
+    protected Carbon $date;
 
     public function __construct(Request $request)
     {
         $this->request = $request;
         $this->user = Auth::user();
+        $this->date = Carbon::parse($this->request->get('date'));
     }
 
     public function execute()
     {
         return Order::query()
+            ->whereBetween('created_at', [$this->date->startOfDay(), $this->date->endOfDay()])
             ->when($this->user->hasRole('application'), function (Builder $query) {
                 return $query->where('user_id', $this->user->id);
             })
