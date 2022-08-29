@@ -22,8 +22,8 @@ class OrderFactory extends Factory
     {
         return [
             'total' => $this->faker->randomDigit(),
-            'subtotal'=> $this->faker->randomDigit(),
-            'vat'=> $this->faker->randomDigit(),
+            'subtotal' => $this->faker->randomDigit(),
+            'vat' => $this->faker->randomDigit(),
             'delivery' => $this->faker->randomDigit(),
             'address_id' => Address::factory()->create()->id,
             'promo_code_id' => PromoCode::factory()->create()->id,
@@ -33,5 +33,23 @@ class OrderFactory extends Factory
             'status' => Order::PENDING_ORDER_STATUS,
             'created_at' => $this->faker->dateTimeBetween('-25 days', 'now'),
         ];
+    }
+
+    public function ofBranch(Branch $branch): OrderFactory
+    {
+        return $this->state(function (array $attributes) use ($branch) {
+            return [
+                'branch_id' => $branch->id,
+            ];
+        });
+    }
+
+    public function ofCreatedAt($date)
+    {
+        return $this->state(function ($attributes) use ($date) {
+            return [
+                'created_at' => $date
+            ];
+        });
     }
 }

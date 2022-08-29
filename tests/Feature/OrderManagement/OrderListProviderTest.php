@@ -7,6 +7,7 @@ use App\Domains\Authentication\Models\User;
 use App\Domains\OrderManagement\Models\Order;
 use App\Domains\AccountManagement\Models\UserBranch;
 use App\Domains\AccountManagement\Models\Branch;
+use Carbon\Carbon;
 use Tests\FlowTestCase;
 
 
@@ -19,16 +20,12 @@ class OrderListProviderTest extends FlowTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->user = User::factory()->create();
-        $this->user->assignRole(User::PROVIDER_ROLE);
+        $this->user = User::factory()->create()
+            ->assignRole(User::PROVIDER_ROLE);
         $this->branch = Branch::factory()->create();
         $this->user->branches()->sync($this->branch->id);
-
-        Order::factory()->count(50)->create([
-            'user_id' => User::factory()->create()->id,
-            'branch_id' => $this->branch->id,
-        ]);
-
+        Order::factory()->count(50)->ofBranch($this->branch)
+            ->ofCreatedAt(Carbon::now())->create();
     }
 
     /** @test */
