@@ -17,7 +17,9 @@ class ScheduleBranchRequest extends FormRequest
 
         return [
             'schedule' => 'nullable|array|min:1|max:7',
-            'schedule.*.*' => 'nullable|string|date_format:H:i',//TODO::it should contains two period like [9:00-11:00] we need to add custom validation here
+            'schedule.*.*.*' => 'nullable|string|date_format:H:i',
+            'schedule.*.*.start' => 'before:schedule.*.*.end',
+            'schedule.*.*.end' => 'after:schedule.*.*.start',
         ];
     }
 }
