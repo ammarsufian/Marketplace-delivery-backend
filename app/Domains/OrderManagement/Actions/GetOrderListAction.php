@@ -32,9 +32,7 @@ class GetOrderListAction implements Actionable
             })
             ->when($this->user->hasRole(User::PROVIDER_ROLE), function (Builder $query) {
                 return $query->whereIn('branch_id', $this->user->branches->pluck('id'))
-                    //->where('created_at', '>=', $this->date->startOfDay());
-                    //->where('created_at', '<=', $this->date->endOfDay());
-                    ->whereDate('created_at', [$this->date->startOfDay(), $this->date->endOfDay()])->orderBy('created_at', 'asc');
+                    ->whereDate('created_at', [$this->date->startOfDay(), $this->date->endOfDay()]);
             })
             ->when($this->request->filled('status'), function (Builder $query) {
                 return $query->where('status', $this->request->get('status'));
