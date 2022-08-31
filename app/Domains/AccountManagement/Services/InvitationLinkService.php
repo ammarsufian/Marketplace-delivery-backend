@@ -37,6 +37,7 @@ class InvitationLinkService
             {
                 if($request->has('sms'))
                 {
+                    //TODO:: otp verification Api call
                     return $result=(new CreateInvitedUserAction($request))->execute();
                 }
                 else
