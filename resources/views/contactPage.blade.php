@@ -9,9 +9,9 @@
     <meta name="author" content="">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
-    <link rel="icon" href="{{ asset('cova/landingPage/img/Favicon.png') }}" type="image/svg+xml" sizes="16x16">
+    <link rel="icon" href="{{ url('cova/landingPage/img/Favicon.png') }}" type="image/svg+xml" sizes="16x16">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('cova/partnerRiderPage/app.css') }}">
+    <link rel="stylesheet" href="{{ url('cova/partnerRiderPage/app.css') }}">
     <title>Contact Us</title>
 </head>
 
@@ -24,7 +24,7 @@
             <div>We are here for you</div>
         </div>
         <div class="contact-img">
-            <img src="{{ asset('cova/partnerRiderPage/img/Faded-logo.png') }}" alt="">
+            <img src="{{ url('cova/partnerRiderPage/img/Faded-logo.png') }}" alt="">
         </div>
     </aside>
     <section class="contact-form">
@@ -53,5 +53,5 @@
     </section>
 </div>
 @include('layouts.footer')
-<script src="{{asset('cova/contact.js')}}"></script>
+<script src="{{url('cova/contact.js')}}"></script>
 </body>

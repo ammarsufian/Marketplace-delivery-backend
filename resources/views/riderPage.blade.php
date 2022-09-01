@@ -2,7 +2,7 @@
 @section('title', 'Rider Page')
 @section('type', 'rider')
 @section('image')
-{{asset('cova/partnerRiderPage/img/rider.png')}}
+{{url('cova/partnerRiderPage/img/rider.png')}}
 @endsection
 @section('post')
 {{route('rider.store')}}
@@ -14,7 +14,7 @@
 <div class="wrapper">
     <div class="card">
         <div class="card-banner">
-            <img class="banner-img" src="{{asset('cova/partnerRiderPage/img/rider-1.png')}}" alt=''>
+            <img class="banner-img" src="{{url('cova/partnerRiderPage/img/rider-1.png')}}" alt=''>
         </div>
         <div class="card-content">
             <h4>
@@ -28,7 +28,7 @@
     </div>
     <div class="card">
         <div class="card-banner">
-            <img class="banner-img" src="{{asset('cova/partnerRiderPage/img/rider-2.png')}}" alt=''>
+            <img class="banner-img" src="{{url('cova/partnerRiderPage/img/rider-2.png')}}" alt=''>
         </div>
         <div class="card-content">
             <h4>
@@ -42,7 +42,7 @@
     </div>
     <div class="card">
         <div class="card-banner">
-            <img class="banner-img" src="{{asset('cova/partnerRiderPage/img/rider-3.png')}}" alt=''>
+            <img class="banner-img" src="{{url('cova/partnerRiderPage/img/rider-3.png')}}" alt=''>
         </div>
         <div class="card-content">
             <h4>

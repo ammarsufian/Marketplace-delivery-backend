@@ -2,7 +2,7 @@
 @section('title', 'Partner Page')
 @section('type', 'partner')
 @section('image')
-{{asset('cova/partnerRiderPage/img/partner.png')}}
+{{url('cova/partnerRiderPage/img/partner.png')}}
 @endsection
 @section('post')
 {{route('partner.store')}}
@@ -16,7 +16,7 @@
 <div class="wrapper">
     <div class="card">
         <div class="card-banner">
-            <img class="banner-img" src="{{asset('cova/partnerRiderPage/img/partner-1.png')}}" alt=''>
+            <img class="banner-img" src="{{url('cova/partnerRiderPage/img/partner-1.png')}}" alt=''>
         </div>
         <div class="card-content">
             <h4>
@@ -31,7 +31,7 @@
     </div>
     <div class="card">
         <div class="card-banner">
-            <img class="banner-img" src="{{asset('cova/partnerRiderPage/img/partner-2.png')}}" alt=''>
+            <img class="banner-img" src="{{url('cova/partnerRiderPage/img/partner-2.png')}}" alt=''>
         </div>
         <div class="card-content">
             <h4>
@@ -45,7 +45,7 @@
     </div>
     <div class="card">
         <div class="card-banner">
-            <img class="banner-img" src="{{asset('cova/partnerRiderPage/img/partner-3.png')}}" alt=''>
+            <img class="banner-img" src="{{url('cova/partnerRiderPage/img/partner-3.png')}}" alt=''>
         </div>
         <div class="card-content">
             <h4>

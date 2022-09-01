@@ -27,9 +27,9 @@
         </div>
         <div class="logo">
             <a href="{{ Route('landing-page') }}">
-                <img class="logo-img" id="logo_white" src="{{ asset('cova/partnerRiderPage/img/Logo.svg') }}"
+                <img class="logo-img" id="logo_white" src="{{ url('cova/partnerRiderPage/img/Logo.svg') }}"
                     alt="">
-                <img class="logo-img hide" id="logo_purple" src="{{ asset('cova/landingPage/img/Logo.svg') }}"
+                <img class="logo-img hide" id="logo_purple" src="{{ url('cova/landingPage/img/Logo.svg') }}"
                     alt="">
             </a>
         </div>

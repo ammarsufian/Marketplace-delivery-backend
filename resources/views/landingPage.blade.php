@@ -8,12 +8,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- add logo img  width 50px-->
-    <link rel="icon" href="{{asset('cova/landingPage/img/Favicon.png')}}" type="image/svg+xml" sizes="16x16">
+    <link rel="icon" href="{{url('cova/landingPage/img/Favicon.png')}}" type="image/svg+xml" sizes="16x16">
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href='{{asset("cova/landingPage/app.css")}}'>
+    <link rel="stylesheet" href='{{url("cova/landingPage/app.css")}}'>
     <title>Landing Page</title>
 </head>
 
@@ -27,7 +27,7 @@
             </div>
             <div class="logo">
                 <a href="#">
-                    <img class="logo-img" src="{{asset("cova/landingPage/img/Logo.svg")}}" alt="logo">
+                    <img class="logo-img" src="{{url("cova/landingPage/img/Logo.svg")}}" alt="logo">
                 </a>
             </div>
         </div>
@@ -65,10 +65,10 @@
     </nav>
     <section class="margin-top-170">
         <div class="img-ellipse10">
-            <img class="ellipse10" id="ellipse10" src="{{asset('cova/landingPage/img/Ellipse10.png')}}" alt="" srcset="" />
+            <img class="ellipse10" id="ellipse10" src="{{url('cova/landingPage/img/Ellipse10.png')}}" alt="" srcset="" />
         </div>
         <div class="img-cofe">
-            <img class="cofe" src="{{asset('cova/landingPage/img/cofe1.png')}}" />
+            <img class="cofe" src="{{url('cova/landingPage/img/cofe1.png')}}" />
         </div>
 
         <div class="card cova-app">
@@ -103,7 +103,7 @@
     </section>
     <section class="section-cova-about flex flex-wrap">
         <div class="img-mariana-cofe-2">
-            <img class="mariana-cofe-2" src="{{asset('cova/landingPage/img/cofe2-mariana-ibanez.png')}}" />
+            <img class="mariana-cofe-2" src="{{url('cova/landingPage/img/cofe2-mariana-ibanez.png')}}" />
         </div>
         <div class="cova-about">
             <div class="card-header">
@@ -160,7 +160,7 @@
         </div>
         <div class="track-order-item-2 ">
             <div class="flex flex-justify-center">
-                <img class="phone-image" src="{{asset('cova/landingPage/img/iPhone-mockup.png')}}" alt="">
+                <img class="phone-image" src="{{url('cova/landingPage/img/iPhone-mockup.png')}}" alt="">
             </div>
         </div>
     </section>
@@ -180,12 +180,12 @@
             </div>
         </div>
         <div class="track-order-item-2 width-930">
-            <img class="traking-image" src="{{asset('cova/landingPage/img/traking-image.png')}}" alt="">
+            <img class="traking-image" src="{{url('cova/landingPage/img/traking-image.png')}}" alt="">
         </div>
     </section>
     <section class="rider-partner flex flex-wrap">
         <div class="card-rider-partner flex flex-col flex-align-center">
-            <img src="{{asset('cova/landingPage/img/istockphoto.png')}}" alt="" class="rider-partner-img">
+            <img src="{{url('cova/landingPage/img/istockphoto.png')}}" alt="" class="rider-partner-img">
             <div class="flex flex-col-align-center text-align-center position-absolute">
                 <div class="card-rider-partner-header">
                     Deliver with Cova
@@ -204,7 +204,7 @@
 
         </div>
         <div class="card-rider-partner flex flex-col flex-align-center">
-            <img src="{{asset('cova/landingPage/img/Vector.png')}}" alt="" class="rider-partner-img">
+            <img src="{{url('cova/landingPage/img/Vector.png')}}" alt="" class="rider-partner-img">
             <div class="flex flex-col-align-center text-align-center position-absolute">
                 <div class="card-rider-partner-header">
                     Partner with Cova
@@ -240,17 +240,17 @@
             <div class="flex flex-justify-center flex-wrap">
                 <div class="store-size-btn">
                     <a href="#">
-                        <img src="{{asset('cova/landingPage/img/App_Store_Badge.svg.png')}}" alt="">
+                        <img src="{{url('cova/landingPage/img/App_Store_Badge.svg.png')}}" alt="">
                     </a>
                 </div>
                 <div class="store-size-btn">
                     <a href="#">
-                        <img src="{{asset('cova/landingPage/img/Google_Play_Store_badge.svg.png')}}" alt="">
+                        <img src="{{url('cova/landingPage/img/Google_Play_Store_badge.svg.png')}}" alt="">
                     </a>
                 </div>
                 <div class="store-size-btn">
                     <a href="#">
-                        <img src="{{asset('cova/landingPage/img/app-gallery.webp')}}" alt="">
+                        <img src="{{url('cova/landingPage/img/app-gallery.webp')}}" alt="">
                     </a>
 
                 </div>
@@ -277,7 +277,7 @@
             </div>
         </section>
     </footer>
-    <script src="{{asset("cova/landingPage/app.js")}}"></script>
+    <script src="{{url("cova/landingPage/app.js")}}"></script>
 </body>
 
 </html>

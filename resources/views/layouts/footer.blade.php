@@ -13,17 +13,17 @@
         <div class="flex flex-justify-center flex-wrap">
             <div class="store-size-btn">
                 <a href="#">
-                    <img src="{{ asset('cova/landingPage/img/App_Store_Badge.svg.png') }}" alt="">
+                    <img src="{{ url('cova/landingPage/img/App_Store_Badge.svg.png') }}" alt="">
                 </a>
             </div>
             <div class="store-size-btn">
                 <a href="#">
-                    <img src="{{ asset('cova/landingPage/img/Google_Play_Store_badge.svg.png') }}" alt="">
+                    <img src="{{ url('cova/landingPage/img/Google_Play_Store_badge.svg.png') }}" alt="">
                 </a>
             </div>
             <div class="store-size-btn">
                 <a href="#">
-                    <img src="{{ asset('cova/landingPage/img/app-gallery.webp') }}" alt="">
+                    <img src="{{ url('cova/landingPage/img/app-gallery.webp') }}" alt="">
                 </a>
             </div>
         </div>

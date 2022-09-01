@@ -8,9 +8,9 @@
     <meta name="author" content="">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="icon" href="{{ asset('cova/landingPage/img/Favicon.png') }}" type="image/svg+xml" sizes="16x16">
+    <link rel="icon" href="{{ url('cova/landingPage/img/Favicon.png') }}" type="image/svg+xml" sizes="16x16">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('cova/partnerRiderPage/app.css') }}">
+    <link rel="stylesheet" href="{{ url('cova/partnerRiderPage/app.css') }}">
     <title>@yield('title')</title>
 </head>
 
@@ -72,7 +72,7 @@
         @endforeach
     </div>
 @endif
-<script src="{{ asset('cova/partnerRiderPage/app.js') }}"></script>
+<script src="{{ url('cova/partnerRiderPage/app.js') }}"></script>
 </body>
 
 </html>
