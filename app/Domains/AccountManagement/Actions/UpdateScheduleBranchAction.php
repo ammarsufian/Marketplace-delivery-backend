@@ -5,11 +5,13 @@ namespace App\Domains\AccountManagement\Actions;
 use Illuminate\Http\Request;
 use App\Domains\Interfaces\Actionable;
 use App\Domains\AccountManagement\Models\Branch;
+use App\Domains\AccountManagement\Traits\MergeScheduleTimeTrait;
 use App\Domains\AccountManagement\Http\Requests\ScheduleBranchRequest;
 
 
 class UpdateScheduleBranchAction implements Actionable
 {
+    use MergeScheduleTimeTrait;
     protected Request $request;
     protected Branch $branch;
 
@@ -21,8 +23,9 @@ class UpdateScheduleBranchAction implements Actionable
 
     public function execute(): bool
     {
+        
         return $this->branch->update([
-            'schedule' => $this->request->get('schedule')
+            'schedule' => $this->mergeScheduleTime($this->request->schedule)
         ]);
     }
 }
