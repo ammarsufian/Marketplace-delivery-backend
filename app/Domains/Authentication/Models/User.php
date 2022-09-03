@@ -11,6 +11,7 @@ use App\Domains\ProductManagement\Models\Favorite;
 use App\Domains\Transaction\Models\CreditCard;
 use App\Domains\Transaction\Models\UserTransaction;
 use Database\Factories\UserFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -73,5 +74,10 @@ class User extends Authenticatable
     public function setMobileNumberAttribute($value): void
     {
         $this->attributes['mobile_number'] = mobile($value);
+    }
+
+    public function scopeOfReferralKey(Builder $query, $referral_key): Builder
+    {
+        return $query->where('referral_key', $referral_key);
     }
 }

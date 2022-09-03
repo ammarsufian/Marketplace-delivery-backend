@@ -11,14 +11,15 @@ class InvitedUserRequest extends FormRequest
     {
         return true;
     }
+
     public function rules(): array
     {
         return [
-            'firstName' => ['required','string'],
-            'lastName' => ['required','string'],
-            'email' => ['required','email','unique:users,email'],
-            'mobileNumber' => ['required','string','unique:users,mobile_number'],
-            'invitedId'=>['required','exists:users,id'],
+            'firstName' => ['required', 'string'],
+            'lastName' => ['required', 'string'],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'mobileNumber' => ['required', 'string', 'unique:users,mobile_number'],
+            'referral_key' => ['required', 'exists:users,referral_key'],
         ];
     }
 }

@@ -6,14 +6,10 @@ use PHPUnit\Framework\TestCase;
 
 class UserInvitationTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    
-    public function test_example()
+
+    /**@test* */
+    public function it_should_return_invite_url()
     {
-        $this->assertTrue(true);
+
     }
 }

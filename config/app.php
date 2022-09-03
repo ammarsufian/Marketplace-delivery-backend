@@ -176,7 +176,7 @@ return [
         App\Providers\NovaServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         \App\Providers\RuleServiceProvider::class,
-        
+
         Spatie\Permission\PermissionServiceProvider::class,
     ],
 
@@ -235,4 +235,5 @@ return [
 
     ],
 
+    'key_invitation' => env('ENCRYPTION_INVITATION_KEY','$2y$10$Gyq8ROaOeGbtiWScs3tn')
 ];
