@@ -17,10 +17,12 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         Relation::morphMap([
-           'EntityProduct' => EntityProduct::class
+            'EntityProduct' => EntityProduct::class
         ]);
 
-        URL::forceScheme('https');
+        if (config('app.env') == 'production') {
+            URL::forceScheme('https');
+        }
     }
 
     /**
