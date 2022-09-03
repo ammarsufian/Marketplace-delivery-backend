@@ -86,7 +86,7 @@
                                 </div>
                                 <div>
                                     {{-- hiden input type --}}
-                                    <input type="hidden" name="invitedId" value="{{$id}}">
+                                    <input type="hidden" name="referral_key" value="{{$id}}">
                                     {{-- hiden input type requist key --}}
                                     <input type="hidden" name="invitedBy" value="{{ request()->has('key') ? request()->get('key') : '' }}">
                                 </div>

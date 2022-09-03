@@ -6,6 +6,7 @@ namespace Tests\Traits;
 
 use App\Domains\AccountManagement\Models\Address;
 use App\Domains\AccountManagement\Models\Branch;
+use App\Domains\Authentication\Models\User;
 use App\Domains\OrderManagement\Models\CartItem;
 use App\Domains\OrderManagement\Models\PromoCode;
 use App\Domains\ProductManagement\Models\EntityProduct;
@@ -97,10 +98,10 @@ trait WithApi
      */
     protected function deleteApi(string $route, array $data = []): TestResponse
     {
-        $headers =[
-            'Accept'=>'application/json'
+        $headers = [
+            'Accept' => 'application/json'
         ];
-        return $this->delete("/api$route", $data,$headers);
+        return $this->delete("/api$route", $data, $headers);
     }
 
     public function login(array $attributes = []): TestResponse
@@ -168,30 +169,30 @@ trait WithApi
         return $this->getApi('/favorites');
     }
 
-    public function addItemToCart(array $attributes,?Address $address=null): TestResponse
+    public function addItemToCart(array $attributes, ?Address $address = null): TestResponse
     {
-        $addressId = $address->id??null;
-        return $this->postApi('/cart?addressId='.$addressId, $attributes);
+        $addressId = $address->id ?? null;
+        return $this->postApi('/cart?addressId=' . $addressId, $attributes);
     }
 
-    public function deleteCartItemById(CartItem $cartItem,Address $address):TestResponse
+    public function deleteCartItemById(CartItem $cartItem, Address $address): TestResponse
     {
-        return $this->deleteApi('/cart/'.$cartItem->id.'?addressId='.$address->id);
+        return $this->deleteApi('/cart/' . $cartItem->id . '?addressId=' . $address->id);
     }
 
     public function checkPromoCode(array $attributes)
     {
-        return $this->postApi('/promo-code/apply',$attributes);
+        return $this->postApi('/promo-code/apply', $attributes);
     }
 
     public function updateProfile(array $attributes = []): TestResponse
     {
-        return $this->putApi('/user/profile',$attributes);
+        return $this->putApi('/user/profile', $attributes);
     }
 
-    public function placeOrder(array $attributes =[]): TestResponse
+    public function placeOrder(array $attributes = []): TestResponse
     {
-        return $this->postApi('/order',$attributes);
+        return $this->postApi('/order', $attributes);
     }
 
     public function getOrderList(): TestResponse
@@ -201,12 +202,12 @@ trait WithApi
 
     public function createCreditCard(array $attributes = []): TestResponse
     {
-        return $this->postApi('/user/credit-card',$attributes);
+        return $this->postApi('/user/credit-card', $attributes);
     }
 
-    public function updateCreditCard(CreditCard $creditCard,array $attributes = []): TestResponse
+    public function updateCreditCard(CreditCard $creditCard, array $attributes = []): TestResponse
     {
-        return $this->patchApi("/user/credit-card/$creditCard->id",$attributes);
+        return $this->patchApi("/user/credit-card/$creditCard->id", $attributes);
     }
 
     public function deleteCreditCard(CreditCard $creditCard): TestResponse
@@ -217,5 +218,10 @@ trait WithApi
     public function listCreditCard(): TestResponse
     {
         return $this->getApi("/user/credit-card");
+    }
+
+    public function getUserInvitationLink(): TestResponse
+    {
+        return $this->getApi('/user/invitation-link');
     }
 }

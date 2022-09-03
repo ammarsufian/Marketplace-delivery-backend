@@ -11,22 +11,23 @@ use Illuminate\Http\Request;
 class CreateInvitedUserAction implements Actionable
 {
     protected Request $request;
+    protected User $senderUser;
 
     public function __construct(InvitedUserRequest $request)
     {
         $this->request = $request;
+        $this->senderUser = User::ofReferralKey($request->get('referral_key'))->first();
     }
 
-    public function execute()
+    public function execute(): User
     {
-
         $user = User::create([
             'name' => $this->request->get('firstName') . ' ' . $this->request->get('lastName'),
-            'email' => $this->request->email,
-            'mobile_number'=>$this->request->mobileNumber,
-            'invitation_sender_id'=>$this->request->invitedId,
+            'email' => $this->request->get('email'),
+            'mobile_number' => $this->request->get('mobileNumber'),
+            'invitation_sender_id' => $this->senderUser->id,
         ]);
-        //TODO:: make pingding point to users 
-         return $user;
+        //TODO:: make pending point to users
+        return $user;
     }
 }
