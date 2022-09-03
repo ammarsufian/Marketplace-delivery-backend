@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Domains\ProductManagement\Models\EntityProduct;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -18,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
         Relation::morphMap([
            'EntityProduct' => EntityProduct::class
         ]);
+
+        URL::forceScheme('https');
     }
 
     /**

@@ -27,9 +27,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function routes()
     {
         Nova::routes()
-                ->withAuthenticationRoutes()
-                ->withPasswordResetRoutes()
-                ->register();
+            ->withAuthenticationRoutes()
+            ->withPasswordResetRoutes()
+            ->register();
     }
 
     /**
@@ -42,9 +42,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function gate()
     {
         Gate::define('viewNova', function ($user) {
-            return in_array($user->email, [
-                //
-            ]);
+            return true;
         });
     }
 
@@ -79,9 +77,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             // ...
-                \Vyuldashev\NovaPermission\NovaPermissionTool::make()
-                 ->rolePolicy('App\Policies\RolePolicy')
-                 ->permissionPolicy('App\Policies\PermissionPolicy'),
+            \Vyuldashev\NovaPermission\NovaPermissionTool::make()
+                ->rolePolicy('App\Policies\RolePolicy')
+                ->permissionPolicy('App\Policies\PermissionPolicy'),
         ];
     }
 
