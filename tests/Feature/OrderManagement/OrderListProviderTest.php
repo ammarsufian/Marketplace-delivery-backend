@@ -17,6 +17,7 @@ class OrderListProviderTest extends FlowTestCase
     public UserBranch $userBranch;
     public Branch $branch;
 
+
     public function setUp(): void
     {
         parent::setUp();
@@ -24,6 +25,8 @@ class OrderListProviderTest extends FlowTestCase
             ->assignRole(User::PROVIDER_ROLE);
         $this->branch = Branch::factory()->create();
         $this->user->branches()->sync($this->branch->id);
+        Order::factory()->count(25)->ofBranch($this->branch)
+            ->ofCreatedAt(Carbon::now())->create(['created_at' => '2022-09-01 08:46:20']);
         Order::factory()->count(50)->ofBranch($this->branch)
             ->ofCreatedAt(Carbon::now())->create();
     }
@@ -35,5 +38,14 @@ class OrderListProviderTest extends FlowTestCase
             ->getOrderListProvider(50)
             ->assertOk()
             ->assertJsonCount(50, 'data');
+    }
+
+    /** @test */
+    public function get_provider_orders_paginated_with_custom_date()
+    {
+        $this->actingAs($this->user)
+            ->getOrderListProvider(25, '2022-09-01')
+            ->assertOk()
+            ->assertJsonCount(25, 'data');
     }
 }
