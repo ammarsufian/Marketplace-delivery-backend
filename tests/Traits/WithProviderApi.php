@@ -62,9 +62,9 @@ trait WithProviderApi
         return $this->postProvider('/login', $attributes);
     }
 
-    public function getOrderListProvider($per_page = 10): TestResponse
+    public function getOrderListProvider($per_page = 10,$date=''): TestResponse
     {
-        return $this->getProvider('/orders?per_page=' . $per_page);
+        return $this->getProvider('/orders?per_page=' . $per_page.'&date='.$date);
     }
 
     public function updateOrderStatusProvider(Order $order, array $attributes = []): TestResponse
