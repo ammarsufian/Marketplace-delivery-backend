@@ -24,7 +24,8 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
             'mobile_number' => '798135749',// mobile($this->faker->phoneNumber),
             'country_id' => Country::factory()->create()->id,
-            'is_active' => true
+            'is_active' => true,
+            'referral_key' => Str::random(10),
         ];
     }
 }

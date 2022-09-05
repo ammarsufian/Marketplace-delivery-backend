@@ -19,6 +19,6 @@ Route::resource('/contact', ContactUsController::class,
         ['names' => ['index' => 'contact','store' => 'contact.store',],]
     )->only(['index', 'store']); //TODO::make this seperate route get,post methods
 
-Route::get('/user/{id}/accept-invitation', IndexInvitedUserController::class)->name('users.invitation');
+Route::get('/user/{referral_key}/accept-invitation', IndexInvitedUserController::class)->name('users.invitation');
 
-Route::post('/user/{id}/register/',CreateInvitedUserController::class)->name('users.invited');
+Route::post('/user/{referral_key}/register/',CreateInvitedUserController::class)->name('users.invited');

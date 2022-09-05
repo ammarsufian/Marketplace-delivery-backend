@@ -34,7 +34,7 @@
     <div class="page-content">
         <div class="form-v1-content">
             <div class="wizard-form">
-                <form class="form-register" action="{{route('users.invited',$id)}}" method="post" id="myform">
+                <form class="form-register" action="{{route('users.invited',$referral_key)}}" method="post" id="myform">
                     @csrf
                     <div id="form-total">
                         <!-- SECTION 1 -->
@@ -54,14 +54,14 @@
                                         <fieldset>
                                             <legend>First Name</legend>
                                             <input type="text" class="form-control" id="first-name" name="firstName"
-                                                placeholder="First Name" required>
+                                                placeholder="First Name" >
                                         </fieldset>
                                     </div>
                                     <div class="form-holder">
                                         <fieldset>
                                             <legend>Last Name</legend>
                                             <input type="text" class="form-control" id="last-name" name="lastName"
-                                                placeholder="Last Name" required>
+                                                placeholder="Last Name" >
                                         </fieldset>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                                             <legend>Your Email</legend>
                                             <input type="text" name="email" id="your_email" class="form-control"
                                                 pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="example@email.com"
-                                                required>
+                                                >
                                         </fieldset>
                                     </div>
                                 </div>
@@ -80,15 +80,15 @@
                                         <fieldset>
                                             <legend>Phone Number</legend>
                                             <input type="text" class="form-control" id="phone" name="mobileNumber"
-                                                placeholder="+966 558-999-777" required>
+                                                placeholder="+966 558-999-777" >
                                         </fieldset>
                                     </div>
                                 </div>
                                 <div>
                                     {{-- hiden input type --}}
-                                    <input type="hidden" name="referral_key" value="{{$id}}">
+                                    <input type="hidden" name="referral_key" value="{{$referral_key}}">
                                     {{-- hiden input type requist key --}}
-                                    <input type="hidden" name="invitedBy" value="{{ request()->has('key') ? request()->get('key') : '' }}">
+                                    <input type="hidden" name="invitedBy" value="{{ request()->has('key') ? request()->get('key') : '' }}">  
                                 </div>
                             </div>
                         </section>
@@ -111,11 +111,12 @@
                                 </div>
                             </div>
                         </section>
+                        <div id="timer" class="timer"></div>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
+    </div>                                    
     @include('layouts.footer')
 
     <script src="{{ asset('cova/inviteFrendPage/js/jquery-3.3.1.min.js') }}"></script>

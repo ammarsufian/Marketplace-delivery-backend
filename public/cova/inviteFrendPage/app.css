@@ -9,7 +9,7 @@ body{
     padding: 0;
 }
 .font-family{
-  font-family: 'Helvetica Neue',Helvetica,"Lucida Grande", Arial, sans-serif;
+    font-family: 'Helvetica Neue',Helvetica,"Lucida Grande", Arial, sans-serif;
     font-style: normal;
     font-weight: 400;
 }
@@ -75,7 +75,7 @@ a{
     position: fixed;
     top: 0;
     left: 0;
-    background: #d4944d;
+    /* background: #d4944d; */
     transform: translateX(-300px);
     transition: transform 0.2s;
     overflow: hidden;
@@ -154,7 +154,7 @@ a{
   .menu_hamburger{
     display: none;
     width: 200px;
-    background-color: #d4944d;
+    /* background-color: #d4944d; */
     height: 100vh;
   }
   .menu_hamburger a{
@@ -252,7 +252,6 @@ a{
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	margin: 145px 0;
-	/* font-family: 'Open Sans', sans-serif; */
 	position: relative;
 	display: flex;
 	display: -webkit-flex;
@@ -265,22 +264,25 @@ a{
     display: block;
     width: 100%;
     overflow: hidden;
-    background: #d4944d;
+    /* background: #d4944d; */
     border-radius: 10px;
     -o-border-radius: 10px;
 	-ms-border-radius: 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .form-register .steps {
-    float: left;
-    width: 280px;
-    background: #d4944d;
+    /* float: left; */
+    background: #fff;
+    width: 100%;
 }
 .form-register .steps ul {
     list-style: none;
-    padding-left: 0;
-    margin: 0;
+    display: flex;
+    justify-content: space-around;
 }
 .form-register .steps li,
 .form-register .steps li.current {
@@ -291,13 +293,16 @@ a{
     -webkit-outline: none;
     position: relative;
 }
-.form-register .steps li::after {
-	width: 280px;
+.form-register .steps .first::after {
+	width: 320px;
 	height: 1px;
 	content: "";
-	background: rgba(255, 255, 255, 0.08);
+
 	position: absolute;
-	top: 100%;
+	top: 50px;
+    left: 105px;
+    border-top: #D9D9D9 1px solid;
+    
 }
 .form-register .steps li .current-info {
 	display: none;
@@ -311,27 +316,30 @@ a{
     -webkit-outline: none;
 }
 .form-register .steps li a .title {
-	display: flex;
-	padding: 15px 25px 0 35px;
+display: flex;
+flex-direction: column;
+align-items: center;
 }
 .form-register .steps li a .title .step-icon { 
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     -o-border-radius: 50%;
     -ms-border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
-    background: #ccc;
+    background: #fff;
     position: relative;
     outline: none;
     -o-outline: none;
     -ms-outline: none;
     -moz-outline: none;
     -webkit-outline: none;
-    color: #333;
+    color: #BEBEBE;
     font-size: 16px;
     margin-right: 15px;
+    border: #EDEDED 2px solid;
+
 }
 .form-register .steps li a .step-icon span {
 	position: absolute;
@@ -348,13 +356,14 @@ a{
 .form-register .steps li.current a:active .step-icon,
 .form-register .steps li.done a .step-icon,
 .form-register .steps li.done a:active .step-icon {
-    background: #E5AB6B;
+    /* background: #E5AB6B; */
     color: #fff;
-    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.25);
+    background-color: #D4944D;
+    /* box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.25);
 	-o-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.25);
     -ms-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.25);
     -moz-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.25);
-    -webkit-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.25); */
 }
 .form-register .steps li a .step-text {
     color: #ccc;
@@ -364,15 +373,15 @@ a{
 }
 .form-register .steps .current .step-text,
 .form-register .steps .done .step-text {
-	color: #fff;
+	/* color: #fff; */
 }
 .form-register .content {
-    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
+    /* box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
     -o-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
     -ms-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
-    -webkit-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
-    float: right;
+    -webkit-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15); */
+    /* float: right; */
     width: 540px;
     background: #fff;
 }
@@ -517,7 +526,7 @@ a{
     -o-box-sizing: border-box;
     -ms-box-sizing: border-box;
     box-sizing: border-box;
-    float: left;
+    /* float: left; */
     text-align: center;
 }
 .inner .form-row-total label img {
@@ -555,7 +564,7 @@ a{
 	-moz-border-radius: 50%;
 	-webkit-border-radius: 50%;
     position: relative;
-    float: left;
+    /* float: left; */
     margin-right: 23px;
     margin-top: -4px;
     cursor: pointer;
@@ -608,7 +617,7 @@ a{
     margin-top: 8px;
 }
 .inner .form-row.form-row-date .form-holder select {
-    float: left;
+    /* float: left; */
     width: 20.6%;
     margin-right: 15px;
 }
@@ -616,7 +625,7 @@ a{
     width: 27.28%;
 }
 .actions {
-	float: right;
+	/* float: right; */
     width: 540px;
     background: #fff;
 }
@@ -662,7 +671,7 @@ a{
     font-size: 18px;
 }
 .actions ul li:hover {
-	background: #d4944d;
+	/* background: #d4944d; */
 }
 .actions ul li a {
 	color: #fff;
@@ -683,7 +692,7 @@ a{
 	.form-register .steps,
 	.form-register .content,
 	.actions {
-		float: none;
+		/* float: none; */
 		width: 100%;
 	}
 	.form-register .content,
@@ -872,3 +881,69 @@ footer {
 .show{
     display:block;
   }
+
+
+  #modalContainer {
+	background-color:rgba(0, 0, 0, 0.3);
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0px;
+	left:0px;
+	z-index:10000;
+}
+
+#alertBox {
+	position:relative;
+	width:500px;
+	min-height:100px;
+	margin-top:50px;
+	border:1px solid #666;
+	background-color:#fff;
+	background-repeat:no-repeat;
+	background-position:20px 30px;
+}
+
+#modalContainer > #alertBox {
+	position:fixed;
+}
+
+#alertBox h1 {
+	margin:0;
+	font:bold 1.2em  Helvetica, sans-serif;
+	background-color:#E5AB6B;
+	color:#FFF;
+	border-bottom:1px solid #000;
+	padding:2px 0 2px 5px;
+}
+
+#alertBox div {
+    margin-top: 10px;
+	margin-left:10px;
+}
+
+#alertBox div li{
+    margin-top: 10px;
+}
+
+
+#alertBox #closeBtn {
+	display:block;
+	position:relative;
+	margin:5px auto;
+	padding:7px;
+	border:0 none;
+	width:70px;
+	text-transform:uppercase;
+	text-align:center;
+	color:#FFF;
+	background-color:#E5AB6B;
+	border-radius: 3px;
+	text-decoration:none;
+}
+.timer {
+    width:100%;
+    text-align:center;
+    font-size: 20px;
+    font-weight: bold;
+}

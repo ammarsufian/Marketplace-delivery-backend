@@ -25,6 +25,7 @@ class CreateInvitedUserAction implements Actionable
             'name' => $this->request->get('firstName') . ' ' . $this->request->get('lastName'),
             'email' => $this->request->get('email'),
             'mobile_number' => $this->request->get('mobileNumber'),
+            'referral_key' => mt_rand(123456, 999999),
             'invitation_sender_id' => $this->senderUser->id,
         ]);
         //TODO:: make pending point to users

@@ -9,8 +9,10 @@ use App\Domains\AccountManagement\Http\Requests\InvitedUserRequest;
 
 class CreateInvitedUserController extends Controller
 {
-    public function __invoke(InvitedUserRequest $request , InvitationFriendService $invitationLink)
+    public function __invoke(InvitedUserRequest $request, InvitationFriendService $invitationLink)
     {
-        return $invitationLink->createUser($request);
+        if ($request->has('sms')) {
+            return $invitationLink->createUser($request);
+        }
     }
 }

@@ -2,10 +2,9 @@
 
 namespace App\Domains\AccountManagement\Services;
 
+use App\Domains\AccountManagement\Actions\CeackInvitationLinkAction;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use App\Domains\AccountManagement\Actions\CreateInvitedUserAction;
 use App\Domains\AccountManagement\Actions\GetInvitationLinkAction;
 use App\Domains\AccountManagement\Http\Requests\InvitedUserRequest;
@@ -24,17 +23,25 @@ class InvitationFriendService
         }
 
         return response()->json([
-            'message' => 'Link Generated',//TODO::make this message Translated
+            'message' => 'Link Generated', //TODO::make this message Translated
             'data' => $result,
             'success' => true
         ]);
     }
-
+    public function CeackInvitationLink($referral_key)
+    {
+        return (new CeackInvitationLinkAction($referral_key))->execute();
+    }
     public function createUser(InvitedUserRequest $request)
     {
-        try {
-            $results = (new CreateInvitedUserAction($request))->execute();
 
+        try {
+            //TODO:: Role to sms otp user
+            if ($request->get('sms')=='sms') {
+                (new CreateInvitedUserAction($request))->execute();
+            } else {
+                throw new Exception('Invalid OTP');
+            }
         } catch (\Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage(),
@@ -42,6 +49,9 @@ class InvitationFriendService
             ], 400);
         }
 
-        return $results;
+        return response()->json([
+            'message' => 'Account Created',  //TODO::make this message Translated
+            'success' => true
+        ]);
     }
 }
