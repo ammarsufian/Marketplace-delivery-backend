@@ -10,6 +10,9 @@ use App\Domains\ProductManagement\Http\Controllers\ProviderEntityProductControll
 use App\Domains\ProductManagement\Http\Controllers\GetEntityProductVariantsController;
 
 Route::post('/login', [ProviderAuthenticationController::class, 'login']);
+Route::post('/register', [ProviderAuthenticationController::class, 'register']);
+Route::middleware('auth:sanctum')->post('/logout', [ProviderAuthenticationController::class, 'logout']);
+Route::middleware('auth:sanctum')->post('/deactivate', [ProviderAuthenticationController::class, 'deactivate']);
 
 Route::prefix('orders')->group(function () {
     Route::middleware('auth:sanctum')->get('/', [ProviderOrderController::class, 'index']);

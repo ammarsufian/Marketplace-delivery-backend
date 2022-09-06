@@ -2,8 +2,9 @@
 
 namespace Tests\Feature\Authentication;
 
-use App\Domains\Authentication\Models\User;
 use Tests\FlowTestCase;
+use Illuminate\Support\Facades\Hash;
+use App\Domains\Authentication\Models\User;
 
 
 class LoginProviderTest extends FlowTestCase
@@ -13,8 +14,8 @@ class LoginProviderTest extends FlowTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->user = User::factory()->create();
-        $this->user->assignRole(User::PROVIDER_ROLE);
+        $this->user = User::factory()->create()
+            ->assignRole(User::PROVIDER_ROLE);
     }
 
     /** @test */
@@ -27,7 +28,8 @@ class LoginProviderTest extends FlowTestCase
     public function it_should_fail_when_send_non_exists_mobile_number()
     {
         $this->loginProvider([
-            'mobile_number' => '997997979'
+            'mobile_number' => '997997979',
+            'password' => '123456'
         ])->assertJsonFragment([
             "mobile_number" => [
                 "The mobile number does not exists"
@@ -36,11 +38,23 @@ class LoginProviderTest extends FlowTestCase
     }
 
     /** @test */
-    public function it_should_login_use_mobile_number_login() {
-            $this->loginProvider(
-                ['mobile_number' => $this->user->mobile_number,]
-            )->assertOk();
-        
+    public function iit_should_fail_when_use_invalid_password()
+    {
+        $this->loginProvider([
+            'mobile_number' => $this->user->mobile_number,
+            'password' => '123456789'
+        ])->assertStatus(400);
+
+    }
+
+    /** @test */
+    public function it_should_login_use_mobile_number_and_password_login()
+    {
+       $this->assertTrue(Hash::check('123456', $this->user->password));
+        // $this->loginProvider([
+        //     'mobile_number' => $this->user->mobile_number,
+        //     'password' => '123456',
+        // ])->assertOk();
     }
 
 }
