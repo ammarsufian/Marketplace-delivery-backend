@@ -50,11 +50,10 @@ class LoginProviderTest extends FlowTestCase
     /** @test */
     public function it_should_login_use_mobile_number_and_password_login()
     {
-       $this->assertTrue(Hash::check('123456', $this->user->password));
-        // $this->loginProvider([
-        //     'mobile_number' => $this->user->mobile_number,
-        //     'password' => '123456',
-        // ])->assertOk();
+        $this->loginProvider([
+            'mobile_number' => $this->user->mobile_number,
+            'password' => '123456',
+        ])->assertOk();
     }
 
 }
