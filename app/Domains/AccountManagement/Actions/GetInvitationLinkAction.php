@@ -20,8 +20,8 @@ class GetInvitationLinkAction implements Actionable
 
     public function execute()
     {
-        $this->user->update(['referral_key' => mt_rand(123456, 999999)]);
-        $link = route('users.invitation', ['id' => $this->user->referral_key]);
+        $this->user->update(['referral_key' => str_replace('/', '',bcrypt($this->user->id))]);
+        $link = route('users.invitation', ['referral_key' => $this->user->referral_key]);
         return $link;
     }
 }

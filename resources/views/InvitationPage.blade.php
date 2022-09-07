@@ -88,7 +88,7 @@
                                     {{-- hiden input type --}}
                                     <input type="hidden" name="referral_key" value="{{$referral_key}}">
                                     {{-- hiden input type requist key --}}
-                                    <input type="hidden" name="invitedBy" value="{{ request()->has('key') ? request()->get('key') : '' }}">  
+                                    <input type="hidden" name="invitedBy" value="{{ request()->has('key') ? request()->get('key') : '' }}">
                                 </div>
                             </div>
                         </section>
@@ -116,12 +116,13 @@
                 </form>
             </div>
         </div>
-    </div>                                    
+    </div>
     @include('layouts.footer')
 
     <script src="{{ asset('cova/inviteFrendPage/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('cova/inviteFrendPage/js/jquery.steps.js') }}"></script>
     <script src="{{ asset('cova/inviteFrendPage/js/main.js') }}"></script>
+    <script src="{{ asset('cova/inviteFrendPage/js/app.js') }}"></script>
 </body>
 
 </html>
