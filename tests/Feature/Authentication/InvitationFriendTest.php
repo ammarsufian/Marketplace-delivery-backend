@@ -12,6 +12,6 @@ class InvitationFriendTest extends FlowTestCase
     public function it_should_return_invitation_friends_link()
     {
         $user = User::factory()->create();
-        dd($this->actingAs($user)->getUserInvitationLink());
+        $this->actingAs($user)->getUserInvitationLink()->assertOk();
     }
 }

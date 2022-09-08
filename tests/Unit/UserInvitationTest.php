@@ -8,8 +8,8 @@ class UserInvitationTest extends TestCase
 {
 
     /**@test* */
-    public function it_should_return_invite_url()
+    public function test_example()
     {
-
+        $this->assertTrue(true);
     }
 }

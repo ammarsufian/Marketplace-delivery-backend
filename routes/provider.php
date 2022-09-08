@@ -27,4 +27,5 @@ Route::prefix('entity-product')->group(function () {
 Route::prefix('branch')->group(function () {
     Route::middleware('auth:sanctum')->get('/', [ProviderBranchController::class, 'show']);
     Route::middleware('auth:sanctum')->put('/{branch}', [ProviderBranchController::class, 'updateScheduleBranch']);
+    Route::middleware('auth:sanctum')->put('/{branch}/status', [ProviderBranchController::class, 'updateStatusBranch']);
 });

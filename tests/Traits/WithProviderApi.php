@@ -62,9 +62,9 @@ trait WithProviderApi
         return $this->postProvider('/login', $attributes);
     }
 
-    public function getOrderListProvider($per_page = 10,$date=''): TestResponse
+    public function getOrderListProvider($per_page = 10, $date = ''): TestResponse
     {
-        return $this->getProvider('/orders?per_page=' . $per_page.'&date='.$date);
+        return $this->getProvider('/orders?per_page=' . $per_page . '&date=' . $date);
     }
 
     public function updateOrderStatusProvider(Order $order, array $attributes = []): TestResponse
@@ -82,8 +82,13 @@ trait WithProviderApi
         return $this->putProvider("/entity-product/{$entityProduct->id}", $attributes);
     }
 
-    public function updateTimeBranch(Branch $branch, array $attributes=[]): TestResponse
+    public function updateTimeBranch(Branch $branch, array $attributes = []): TestResponse
     {
         return $this->putProvider("/branch/{$branch->id}", $attributes);
+    }
+
+    public function updateStatusBranch(Branch $branch, array $attributes = []): TestResponse
+    {
+        return $this->putProvider("/branch/{$branch->id}/status", $attributes);
     }
 }

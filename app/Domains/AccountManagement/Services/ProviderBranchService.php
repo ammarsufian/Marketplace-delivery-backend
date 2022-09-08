@@ -10,7 +10,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\Domains\AccountManagement\Actions\UpdateScheduleBranchAction;
 use App\Domains\AccountManagement\Http\Requests\ScheduleBranchRequest;
 use App\Domains\AccountManagement\Http\Resources\ProviderBranchResource;
-
+use FuncInfo;
 
 class ProviderBranchService
 {
@@ -30,6 +30,14 @@ class ProviderBranchService
                 'success' => false
             ], 400);
         }
+        return ProviderBranchResource::make($branch->refresh());
+    }
+
+    public function updateStatusBranch(Request $request, Branch $branch)
+    {
+        $branch->update([
+            'status' => $request->get('status')
+        ]);
         return ProviderBranchResource::make($branch->refresh());
     }
 }

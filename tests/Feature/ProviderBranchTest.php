@@ -10,6 +10,7 @@ use App\Domains\AccountManagement\Traits\MergeScheduleTimeTrait;
 class ProviderBranchTest extends FlowTestCase
 {
     use MergeScheduleTimeTrait;
+
     public User $user;
     public Branch $branch;
 
@@ -32,7 +33,7 @@ class ProviderBranchTest extends FlowTestCase
                 $this->branch,
                 [
                     'schedule' => $this->getSchedule(),
-                    ]
+                ]
             )->assertOk();
         $this->assertEquals($this->branch->refresh()->schedule, $this->mergeScheduleTime($this->getSchedule()));
     }
@@ -44,34 +45,48 @@ class ProviderBranchTest extends FlowTestCase
             ->updateTimeBranch(
                 $this->branch,
                 [
-                    'schedule' => $this->getSchedule('21:00','09:00'),
-                    ]
+                    'schedule' => $this->getSchedule('21:00', '09:00'),
+                ]
             )->assertStatus(422);
     }
 
-    /** @test  */
+    /** @test */
     public function it_cant_update_date_barnch_invlaid_date_format()
     {
         $this->actingAs($this->user)
             ->updateTimeBranch(
                 $this->branch,
                 [
-                    'schedule' => $this->getSchedule('21:00','25:00'),
-                    ]
+                    'schedule' => $this->getSchedule('21:00', '25:00'),
+                ]
             )->assertStatus(422);
     }
 
-    public function getSchedule($start='09:00',$end='18:00'): array
+    /** @test */
+    public function it_should_update_status_branch()
+    {
+        $status = rand(0, 1);
+        $this->actingAs($this->user)
+            ->updateStatusBranch(
+                $this->branch,
+                [
+                    'status' => $status,
+                ]
+            )->assertOk();
+        $this->assertEquals($this->branch->refresh()->status, $status);
+    }
+
+    public function getSchedule($start = '09:00', $end = '18:00'): array
     {
         return
             [
-                "saturday" => [["start" => $start,"end" => $end]],
-                "sunday" => [["start" => $start,"end" => $end]],
-                "monday" => [["start" => $start,"end" => $end]],
-                "tuesday" => [["start" => $start,"end" => $end]],
-                "wednesday" => [["start" => $start,"end" => $end]],
-                "thursday" => [["start" => $start,"end" => $end]],
-                "friday" => [["start" => $start,"end" => $end]],
+                "saturday" => [["start" => $start, "end" => $end]],
+                "sunday" => [["start" => $start, "end" => $end]],
+                "monday" => [["start" => $start, "end" => $end]],
+                "tuesday" => [["start" => $start, "end" => $end]],
+                "wednesday" => [["start" => $start, "end" => $end]],
+                "thursday" => [["start" => $start, "end" => $end]],
+                "friday" => [["start" => $start, "end" => $end]],
 
             ];
     }
