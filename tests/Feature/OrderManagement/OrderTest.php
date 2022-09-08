@@ -39,9 +39,9 @@ class OrderTest extends FlowTestCase
         ])->assertCreated();
 
         $orders = $this->cart->user->orders;
-        $this->assertCount(1,$orders);
-        $this->assertCount(10,$orders->first()->items);
-        $this->assertEquals($orders->first()->status,Order::PENDING_ORDER_STATUS);
+        $this->assertCount(1, $orders);
+        $this->assertCount(10, $orders->first()->items);
+        $this->assertEquals($orders->first()->status, Order::PENDING_ORDER_STATUS);
     }
 
     /** @test */
@@ -52,6 +52,19 @@ class OrderTest extends FlowTestCase
             'addressId' => $this->address->id,
             'paymentMethodId' => $paymentMethod->id
         ])->assertStatus(400);
+    }
+
+    /** @test */
+    public function it_cont_create_order_when_branch_ststus_is_offline()
+    {
+        $branch = $this->cart->branch;
+        $branch->update(['status' => 0]);
+        $paymentMethod = PaymentMethod::factory()->active()->create();
+        $this->actingAs($this->cart->user)->placeOrder([
+            'addressId' => $this->address->id,
+            'paymentMethodId' => $paymentMethod->id
+        ])->assertStatus(400)
+            ->assertJson(['message' => 'Branch is offline']);
     }
 
 }

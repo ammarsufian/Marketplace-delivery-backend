@@ -24,7 +24,7 @@ class InvitationFriendService
 
         return response()->json([
             'message' => 'Link Generated', //TODO::make this message Translated
-            'data' => $result,
+            'data' => [$result],
             'success' => true
         ]);
     }

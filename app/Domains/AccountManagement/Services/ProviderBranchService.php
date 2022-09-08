@@ -10,7 +10,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\Domains\AccountManagement\Actions\UpdateScheduleBranchAction;
 use App\Domains\AccountManagement\Http\Requests\ScheduleBranchRequest;
 use App\Domains\AccountManagement\Http\Resources\ProviderBranchResource;
-use FuncInfo;
 
 class ProviderBranchService
 {

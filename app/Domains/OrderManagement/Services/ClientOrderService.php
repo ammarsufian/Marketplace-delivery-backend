@@ -23,6 +23,7 @@ use App\Rules\Rules;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
+use App\Domains\AccountManagement\Rules\CheckBranchStatusRule;
 
 class ClientOrderService
 {
@@ -30,6 +31,7 @@ class ClientOrderService
     public function placeOrder(PlaceOrderRequest $request)
     {
         $promoCode = Auth::user()->cart->promoCode;
+        $branch = Auth::user()->cart->branch;
         $address = Address::find($request->get('addressId'));
         $paymentMethod = PaymentMethod::find($request->get('paymentMethodId'));
 
@@ -41,6 +43,7 @@ class ClientOrderService
                 (new CheckRemainingPromoCodeCounterRule($promoCode)),
                 (new CheckAddressBelongsToUserRule($address)),
                 (new CheckPaymentMethodStatusRule($paymentMethod)),
+                (new CheckBranchStatusRule($branch)),
             ]);
 
             $order = (new CreateOrderAction($request, $promoCode, $address))->execute();
