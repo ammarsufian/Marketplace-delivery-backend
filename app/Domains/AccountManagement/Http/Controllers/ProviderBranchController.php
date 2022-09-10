@@ -14,12 +14,14 @@ class ProviderBranchController extends Controller
     {
         return $providerBranchService->show();
     }
-    public function updateScheduleBranch(Branch $branch,ScheduleBranchRequest $request, ProviderBranchService $providerBranchService)
+
+    public function updateScheduleBranch(Branch $branch, ScheduleBranchRequest $request, ProviderBranchService $providerBranchService)
     {
-        return $providerBranchService->updateScheduleBranch($request ,$branch);
+        return $providerBranchService->updateScheduleBranch($request, $branch);
     }
-    public function updateStatusBranch(Branch $branch,Request $request ,ProviderBranchService $providerBranchService)
+
+    public function updateStatusBranch(Branch $branch, Request $request, ProviderBranchService $providerBranchService)
     {
-        return $providerBranchService->updateStatusBranch($request,$branch);
+        return $providerBranchService->updateStatusBranch($request, $branch);
     }
 }

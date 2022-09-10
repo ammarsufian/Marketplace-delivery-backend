@@ -22,7 +22,7 @@ class ProviderBranchService
     public function updateScheduleBranch(ScheduleBranchRequest $request, Branch $branch)
     {
         try {
-            $results = (new UpdateScheduleBranchAction($request, $branch))->execute();
+            (new UpdateScheduleBranchAction($request, $branch))->execute();
         } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage(),

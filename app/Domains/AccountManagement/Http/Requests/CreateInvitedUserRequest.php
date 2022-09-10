@@ -11,10 +11,11 @@ class CreateInvitedUserRequest extends FormRequest
     {
         return true;
     }
+
     public function rules(): array
     {
         return [
-            'sms'=>['required'],
+            'sms' => ['required'],
         ];
     }
 }

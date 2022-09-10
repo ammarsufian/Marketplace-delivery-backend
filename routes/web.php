@@ -16,9 +16,9 @@ Route::get('/partner', PartnerController::class)->name('partner');
 Route::post('/rider', NewJoinerController::class)->name('rider.store');
 Route::post('/partner', NewJoinerController::class)->name('partner.store');
 Route::resource('/contact', ContactUsController::class,
-        ['names' => ['index' => 'contact','store' => 'contact.store',],]
-    )->only(['index', 'store']); //TODO::make this seperate route get,post methods
+    ['names' => ['index' => 'contact', 'store' => 'contact.store',],]
+)->only(['index', 'store']); //TODO::make this seperate route get,post methods
 
 Route::get('/user/{referral_key}/accept-invitation', IndexInvitedUserController::class)->name('users.invitation');
 
-Route::post('/user/{referral_key}/register/',CreateInvitedUserController::class)->name('users.invited');
+Route::post('/user/{referral_key}/register/', CreateInvitedUserController::class)->name('users.invited');

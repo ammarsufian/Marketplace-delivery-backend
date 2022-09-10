@@ -31,6 +31,14 @@ class User extends Authenticatable
 
     protected $guarded = [];
 
+    protected static function boot()
+    {
+        parent::boot();
+        static::created(function (User $user) {
+            $user->update(['referral_key' => mt_rand(1111111, 9999999)]);
+        });
+    }
+
     protected static function newFactory(): UserFactory
     {
         return UserFactory::new();

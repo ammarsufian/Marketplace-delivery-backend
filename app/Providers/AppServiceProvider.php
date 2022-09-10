@@ -20,7 +20,8 @@ class AppServiceProvider extends ServiceProvider
            'EntityProduct' => EntityProduct::class
         ]);
 
-        URL::forceScheme('https');
+        if(config('app.env') === 'production')
+            URL::forceScheme('https');
     }
 
     /**

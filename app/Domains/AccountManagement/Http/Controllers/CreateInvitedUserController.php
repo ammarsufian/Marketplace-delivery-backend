@@ -11,8 +11,10 @@ class CreateInvitedUserController extends Controller
 {
     public function __invoke(InvitedUserRequest $request, InvitationFriendService $invitationLink)
     {
-        if ($request->has('sms')) {
-            return $invitationLink->createUser($request);
-        }
+        return $invitationLink->createUser($request);
     }
 }
+
+/**
+ * Please merge this controller with GetInvitationController and IndexInvitedUserController
+ */

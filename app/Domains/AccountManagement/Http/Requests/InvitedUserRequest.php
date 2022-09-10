@@ -2,6 +2,7 @@
 
 namespace App\Domains\AccountManagement\Http\Requests;
 
+use App\Domains\Authentication\Rules\Requests\ValidateUniqueMobileNumberRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 
@@ -15,10 +16,10 @@ class InvitedUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'firstName' => ['required', 'string'],
-            'lastName' => ['required', 'string'],
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'mobileNumber' => ['required', 'string', 'unique:users,mobile_number'],
+            'mobile_number' => ['required', 'string',new ValidateUniqueMobileNumberRule()],
             'referral_key' => ['required', 'exists:users,referral_key'],
         ];
     }
