@@ -6,16 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Domains\AccountManagement\Services\ContactUsService;
 
-class ContactUsController extends Controller
+class CreateContactUsController extends Controller
 {
-
-
-    public function index()
-    {
-        return view('contactPage');
-    }
-
-    public function store(Request $request, ContactUsService $ContactUsService)
+    public function __invoke(Request $request, ContactUsService $ContactUsService)
     {
         $ContactUsService->create($request);
         return redirect()->route('landing-page');

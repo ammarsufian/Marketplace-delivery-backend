@@ -18,7 +18,7 @@ use App\Domains\ApplicationManagement\Http\Controllers\CategoryController;
 use App\Domains\OrderManagement\Http\Controllers\ApplyPromoCodeController;
 use App\Domains\OrderManagement\Http\Controllers\DeleteCartItemController;
 use App\Domains\ProductManagement\Http\Controllers\EntityProductController;
-use App\Domains\AccountManagement\Http\Controllers\GetInvitationLinkController;
+use App\Domains\AccountManagement\Http\Controllers\InvitedUserController;
 
 Route::prefix('user')->group(function () {
     Route::post('/login', [AuthenticationController::class, 'login']);
@@ -29,7 +29,7 @@ Route::prefix('user')->group(function () {
     Route::middleware('auth:sanctum')->put('/profile', [EditProfileController::class, 'update']);
     Route::middleware('auth:sanctum')->resource('/credit-card', CreditCardController::class);
     Route::middleware('auth:sanctum')->post('/deactivate', DeactivateUserController::class);
-    Route::middleware('auth:sanctum')->get('/invitation-link', GetInvitationLinkController::class);
+    Route::middleware('auth:sanctum')->get('/invitation-link', [InvitedUserController::class,'index']);
 });
 Route::prefix('categories')->group(function () {
     Route::middleware('auth:sanctum')->get('/', [CategoryController::class, 'index']);

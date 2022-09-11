@@ -53,20 +53,22 @@ class InvitationFriendService
     {
 
         try {
-            $ruleResults = Rules::apply([
-                (new CheckInvitedFriendsOtpRule($request->mobile_number, $request->otp)),
-            ]);
 
-            if ($ruleResults->hasFailures())
-                $ruleResults->toException();
-
-            (new CreateInvitedUserAction($request))->execute();
+            throw_if(empty($request->otp), 'OTP is required');
+           //  return $request;
+                $ruleResults = Rules::apply([
+                    (new CheckInvitedFriendsOtpRule($request->mobile_number, $request->otp)),
+                 ]);
+                if ($ruleResults->hasFailures()){
+                    $ruleResults->toException();
+                }
+              //  (new CreateInvitedUserAction($request))->execute();
 
         } catch (\Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage(),
                 'success' => false
-            ], 400);
+            ], 422);
         }
 
         return response()->json([

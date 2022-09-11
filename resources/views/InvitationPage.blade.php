@@ -34,7 +34,7 @@
     <div class="page-content">
         <div class="form-v1-content">
             <div class="wizard-form">
-                <form class="form-register" action="{{route('users.invited',$referral_key)}}" method="post" id="myform">
+                <form class="form-register" action="{{route('users.checked',$referral_key)}}" method="post" id="myform">
                     @csrf
                     <div id="form-total">
                         <!-- SECTION 1 -->
@@ -51,23 +51,23 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-holder">
-                                        <fieldset>
+                                        <fieldset id="first_name">
                                             <legend>First Name</legend>
-                                            <input type="text" class="form-control" id="first-name" name="firstName"
+                                            <input type="text" class="form-control" id="first-name" name="first_name"
                                                 placeholder="First Name" >
                                         </fieldset>
                                     </div>
                                     <div class="form-holder">
-                                        <fieldset>
+                                        <fieldset id="last_name">
                                             <legend>Last Name</legend>
-                                            <input type="text" class="form-control" id="last-name" name="lastName"
+                                            <input type="text" class="form-control" id="last-name" name="last_name"
                                                 placeholder="Last Name" >
                                         </fieldset>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
-                                        <fieldset>
+                                        <fieldset id="email">
                                             <legend>Your Email</legend>
                                             <input type="text" name="email" id="your_email" class="form-control"
                                                 pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="example@email.com"
@@ -77,9 +77,9 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
-                                        <fieldset>
+                                        <fieldset id="mobile_number">
                                             <legend>Phone Number</legend>
-                                            <input type="text" class="form-control" id="phone" name="mobileNumber"
+                                            <input type="text" class="form-control" id="phone" name="mobile_number"
                                                 placeholder="+966 558-999-777" >
                                         </fieldset>
                                     </div>
@@ -87,8 +87,6 @@
                                 <div>
                                     {{-- hiden input type --}}
                                     <input type="hidden" name="referral_key" value="{{$referral_key}}">
-                                    {{-- hiden input type requist key --}}
-                                    <input type="hidden" name="invitedBy" value="{{ request()->has('key') ? request()->get('key') : '' }}">
                                 </div>
                             </div>
                         </section>
@@ -104,8 +102,13 @@
                                     <h3 class="heading">Verification code</h3>
                                     <p>You can get point for every invited friend</p>
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-holder form-holder-2" id="SMS">
+                                <div class="form-row form-column">
+                                    <div class="form-holder form-holder-2">
+                                            <fieldset id="otp">
+
+                                            </fieldset>
+                                    </div>
+                                    <div id="otp_message" class="error-message">
 
                                     </div>
                                 </div>
