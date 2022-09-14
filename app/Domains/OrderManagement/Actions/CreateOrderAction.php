@@ -22,12 +22,12 @@ class CreateOrderAction implements Actionable
     protected Address $address;
     protected Cart $cart;
 
-    public function __construct(PlaceOrderRequest $request,?PromoCode $promoCode,Address $address)
+    public function __construct(PlaceOrderRequest $request, ?PromoCode $promoCode, Address $address, Cart $cart)
     {
         $this->request = $request;
-        $this->cart = Auth::user()->cart;
-        $this->calculations = isset($promoCode)?
-            (new $promoCode->type($promoCode,$this->cart))->execute():$this->calculate($this->cart);
+        $this->cart = $cart;
+        $this->calculations = isset($promoCode) ?
+            (new $promoCode->type($promoCode, $this->cart))->execute() : $this->calculate($this->cart);
         $this->promoCode = $promoCode;
         $this->address = $address;
     }
@@ -40,6 +40,6 @@ class CreateOrderAction implements Actionable
                 'address_id' => $this->address->id,
                 'branch_id' => $this->cart->branch_id,
                 'status' => Order::PENDING_ORDER_STATUS
-            ],$this->calculations));
+            ], $this->calculations));
     }
 }
