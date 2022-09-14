@@ -22,7 +22,10 @@ class ShipmentGateway
     {
         try {
             return $this->client->request($this->getMethod(), $this->getUrl(), [
-                    'headers' => ['Accept' => 'application/json'],
+                    'headers' => [
+                        'Accept' => 'application/json',
+                        'Accept-Language' => 'en'
+                    ],
                     RequestOptions::JSON => $this->getParams(),
                 ]
             )->getBody()->getContents();

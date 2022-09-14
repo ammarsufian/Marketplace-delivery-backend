@@ -25,7 +25,7 @@ class StoreSenderOrderAction extends ShipmentGateway implements Actionable
 
     public function execute()
     {
-        return $this->send();
+       dd(data_get(json_decode($this->send(),1),'data')['id']);
     }
 
     public function getUrl(): string
