@@ -39,19 +39,23 @@ class OrderTest extends FlowTestCase
         ])->assertCreated();
 
         $orders = $this->cart->user->orders;
-        $this->assertCount(1,$orders);
-        $this->assertCount(10,$orders->first()->items);
-        $this->assertEquals($orders->first()->status,Order::PENDING_ORDER_STATUS);
+        $this->assertCount(1, $orders);
+        $this->assertCount(10, $orders->first()->items);
+        $this->assertEquals($orders->first()->status, Order::PENDING_ORDER_STATUS);
+        $this->assertEmpty(Cart::find($this->cart->id));
     }
 
     /** @test */
     public function it_cannot_create_order_when_payment_method_is_not_active()
     {
         $paymentMethod = PaymentMethod::factory()->notActive()->create();
-        $this->actingAs($this->cart->user)->placeOrder([
+        $cart = Cart::factory()->ofUser($this->cart->user)->create();
+        $this->actingAs($cart->user)->placeOrder([
             'addressId' => $this->address->id,
             'paymentMethodId' => $paymentMethod->id
         ])->assertStatus(400);
+
+        $this->assertNotEmpty(Cart::find($cart->id));
     }
 
 }

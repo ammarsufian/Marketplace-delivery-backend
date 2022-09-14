@@ -6,6 +6,7 @@ use App\Domains\AccountManagement\Models\Address;
 use App\Domains\Authentication\Rules\CheckIfUserIsActiveRule;
 use App\Domains\OrderManagement\Actions\CreateOrderAction;
 use App\Domains\OrderManagement\Actions\CreateOrderItemAction;
+use App\Domains\OrderManagement\Actions\DeleteCartWithItemsAction;
 use App\Domains\OrderManagement\Actions\GetOrderListAction;
 use App\Domains\OrderManagement\Http\Requests\PlaceOrderRequest;
 use App\Domains\OrderManagement\Http\Resources\OrderDetailsResource;
@@ -32,6 +33,7 @@ class ClientOrderService
         $promoCode = Auth::user()->cart->promoCode;
         $address = Address::find($request->get('addressId'));
         $paymentMethod = PaymentMethod::find($request->get('paymentMethodId'));
+        $cart = Auth::user()->cart;
 
         try {
             $ruleResults = Rules::apply([
@@ -43,9 +45,10 @@ class ClientOrderService
                 (new CheckPaymentMethodStatusRule($paymentMethod)),
             ]);
 
-            $order = (new CreateOrderAction($request, $promoCode, $address))->execute();
+            $order = (new CreateOrderAction($request, $promoCode, $address, $cart))->execute();
             (new CreateOrderItemAction($order))->execute();
             (new CreateOrderTransactionAction($order, $paymentMethod, $request->get('credit_card_id')))->execute();
+            (new DeleteCartWithItemsAction($cart))->execute();
 
             if ($ruleResults->hasFailures())
                 $ruleResults->toException();
