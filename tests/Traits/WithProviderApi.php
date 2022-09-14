@@ -62,6 +62,17 @@ trait WithProviderApi
         return $this->postProvider('/login', $attributes);
     }
 
+
+    public function logoutProvider(array $attributes = []): TestResponse
+    {
+        return $this->postProvider('/logout', $attributes);
+    }
+
+    public function deactivateProvider(array $attributes = []): TestResponse
+    {
+        return $this->postProvider('/deactivate', $attributes);
+    }
+
     public function getOrderListProvider($per_page = 10,$date=''): TestResponse
     {
         return $this->getProvider('/orders?per_page=' . $per_page.'&date='.$date);

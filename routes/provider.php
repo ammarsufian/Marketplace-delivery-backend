@@ -11,20 +11,25 @@ use App\Domains\ProductManagement\Http\Controllers\GetEntityProductVariantsContr
 
 Route::post('/login', [ProviderAuthenticationController::class, 'login']);
 
-Route::prefix('orders')->group(function () {
-    Route::middleware('auth:sanctum')->get('/', [ProviderOrderController::class, 'index']);
-    Route::middleware('auth:sanctum')->put('/{order}/edit', [ProviderOrderController::class, 'updateStatus']);
-    Route::middleware('auth:sanctum')->get('/cancel-reasons', OrderCancelReasonListController::class);
-});
-Route::middleware('auth:sanctum')->get('products', GetProductByNameController::class);
-Route::middleware('auth:sanctum')->get('variants', GetEntityProductVariantsController::class);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [ProviderAuthenticationController::class, 'logout']);
+    Route::post('/deactivate', [ProviderAuthenticationController::class, 'deactivate']);
 
-Route::prefix('entity-product')->group(function () {
-    Route::middleware('auth:sanctum')->post('/', [ProviderEntityProductController::class, 'store']);
-    Route::middleware('auth:sanctum')->put('/{entityProduct}', [ProviderEntityProductController::class, 'update']);
-});
+    Route::prefix('orders')->group(function () {
+        Route::get('/', [ProviderOrderController::class, 'index']);
+        Route::put('/{order}/edit', [ProviderOrderController::class, 'updateStatus']);
+        Route::get('/cancel-reasons', OrderCancelReasonListController::class);
+    });
 
-Route::prefix('branch')->group(function () {
-    Route::middleware('auth:sanctum')->get('/', [ProviderBranchController::class, 'show']);
-    Route::middleware('auth:sanctum')->put('/{branch}', [ProviderBranchController::class, 'updateScheduleBranch']);
+//    Route::get('products', GetProductByNameController::class);
+//    Route::get('variants', GetEntityProductVariantsController::class);
+//    Route::prefix('entity-product')->group(function () {
+//        Route::post('/', [ProviderEntityProductController::class, 'store']);
+//        Route::put('/{entityProduct}', [ProviderEntityProductController::class, 'update']);
+//    }); //TODO::comment this changes until take decision from business side
+
+    Route::prefix('branch')->group(function () {
+        Route::get('/', [ProviderBranchController::class, 'show']);
+        Route::put('/{branch}', [ProviderBranchController::class, 'updateScheduleBranch']);
+    });
 });
