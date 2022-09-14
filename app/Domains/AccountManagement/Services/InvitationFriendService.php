@@ -40,7 +40,7 @@ class InvitationFriendService
     public function sendOTP(InvitedUserRequest $request)
     {
         try {
-            return (new WebOtpService())->sendOTP($request->get('mobile_number'));
+            return (new SmsService())->sendOTP($request->get('mobile_number'));
         } catch (\Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage(),
@@ -53,16 +53,14 @@ class InvitationFriendService
     {
 
         try {
+            $ruleResults = Rules::apply([
+                (new CheckInvitedFriendsOtpRule($request->get("mobile_number"), $request->get("otp"))),
+            ]);
+            if ($ruleResults->hasFailures()) {
+                $ruleResults->toException();
+            }
 
-            throw_if(empty($request->otp), 'OTP is required');
-           //  return $request;
-                $ruleResults = Rules::apply([
-                    (new CheckInvitedFriendsOtpRule($request->mobile_number, $request->otp)),
-                 ]);
-                if ($ruleResults->hasFailures()){
-                    $ruleResults->toException();
-                }
-              //  (new CreateInvitedUserAction($request))->execute();
+            (new CreateInvitedUserAction($request))->execute();
 
         } catch (\Exception $exception) {
             return response()->json([
