@@ -62,10 +62,6 @@ trait WithProviderApi
         return $this->postProvider('/login', $attributes);
     }
 
-    public function registerProvider(array $attributes = []): TestResponse
-    {
-        return $this->postProvider('/register', $attributes);
-    }
 
     public function logoutProvider(array $attributes = []): TestResponse
     {

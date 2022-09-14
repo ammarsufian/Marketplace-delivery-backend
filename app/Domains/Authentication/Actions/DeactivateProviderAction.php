@@ -11,15 +11,16 @@ class DeactivateProviderAction implements Actionable
 {
     protected Request $request;
     protected User $user;
+
     public function __construct(Request $request)
     {
         $this->request = $request;
         $this->user = Auth::user();
-        }
+    }
 
     public function execute(): User
     {
-        $this->user->update(['is_active' => 0]);
-        return $this->user;
+        $this->user->update(['is_active' => false]);
+        return $this->user->refresh();
     }
 }

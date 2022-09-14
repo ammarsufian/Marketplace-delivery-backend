@@ -15,15 +15,13 @@ class ProviderAuthenticationController extends Controller
     {
         return $providerAuthenticationService->login($request);
     }
-    public function register(RegisterProviderRequest $request, ProviderAuthenticationService $providerAuthenticationService)
-    {
-        return $providerAuthenticationService->register($request);
-    }
-    public function logout(Request $request,ProviderAuthenticationService $providerAuthenticationService)
+
+    public function logout(Request $request, ProviderAuthenticationService $providerAuthenticationService)
     {
         return $providerAuthenticationService->logout($request);
     }
-    public function deactivate (Request $request, ProviderAuthenticationService $providerAuthenticationService)
+
+    public function deactivate(Request $request, ProviderAuthenticationService $providerAuthenticationService)
     {
         return $providerAuthenticationService->deactivate($request);
     }

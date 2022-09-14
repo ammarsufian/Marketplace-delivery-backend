@@ -13,7 +13,7 @@ class LoginProviderAction implements Actionable
 {
     protected Request $request;
 
-    public function __construct(LoginProviderRequest $request )
+    public function __construct(LoginProviderRequest $request)
     {
         $this->request = $request;
     }

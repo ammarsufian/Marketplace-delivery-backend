@@ -20,22 +20,9 @@ class ProviderAuthenticationService
     {
         try {
             $user = (new LoginProviderAction($request))->execute();
-             throw_if(!(Hash::check($request->get('password'), $user->password)), Exception::class, 'Invalid password');
-             throw_if(!$user->is_active, Exception::class, 'User is not active');
-        } catch (Exception $exception) {
-            return response()->json([
-                'message' => $exception->getMessage(),
-                'success' => false
-            ], 400);
-        }
-        return UserAuthenticationResource::make($user);
-
-    }
-
-    public function register(RegisterProviderRequest $request)
-    {
-        try {
-            $user = (new RegisterProviderAction($request))->execute();
+            throw_if(!Hash::check($request->get('password'), $user->password), Exception::class, 'Invalid password');
+            throw_if(!$user->is_active, Exception::class, 'User is not active');
+            //TODO::move exception handling into custom rules
 
         } catch (Exception $exception) {
             return response()->json([

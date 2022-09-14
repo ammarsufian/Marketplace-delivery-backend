@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Domains\ProductManagement\Models\EntityProduct;
+use PHPUnit\Framework\SkippedTestCase;
 use Tests\FlowTestCase;
 use App\Domains\Authentication\Models\User;
 use App\Domains\AccountManagement\Models\Branch;
@@ -18,6 +19,7 @@ class ProviderEntityProductTest extends FlowTestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->markTestSkipped('Waiting to take decision from busines side ');
         $this->user = User::factory()->create()
             ->assignRole(User::PROVIDER_ROLE);
 
