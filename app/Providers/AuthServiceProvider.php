@@ -29,6 +29,7 @@ use App\Policies\CartItemVariantPolicy;
 use App\Policies\OrderItemVariantPolicy;
 use App\Policies\CreditCardCompanyPolicy;
 use App\Policies\OrderCancelReasonPolicy;
+use App\Policies\PackagePolicy;
 use Illuminate\Support\Facades\Gate;
 use App\Domains\Authentication\Models\User;
 use App\Domains\Authentication\Models\Admin;
@@ -57,7 +58,7 @@ use App\Domains\OrderManagement\Models\CartItemVariant;
 use App\Domains\ProductManagement\Models\EntityProduct;
 use App\Domains\OrderManagement\Models\OrderItemVariant;
 use App\Domains\ProductManagement\Models\AdditionalItem;
-
+use App\Domains\ApplicationManagement\Models\Package;
 use App\Domains\OrderManagement\Models\OrderCancelReason;
 use App\Domains\ProductManagement\Models\EntityProductVariants;
 use App\Domains\ProductManagement\Models\EntityProductAdditionalItem;
@@ -99,6 +100,7 @@ class AuthServiceProvider extends ServiceProvider
         CreditCardCompany::class => CreditCardCompanyPolicy::class,
         ContactUs::class => ContactUsPolicy::class,
         UserBranch::class => UserBranchPolicy::class,
+        Package::class => PackagePolicy::class,
     ];
 
     /**
