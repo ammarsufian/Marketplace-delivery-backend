@@ -7,19 +7,8 @@ use App\Domains\ApplicationManagement\Services\PackageService;
 
 class PackageController extends Controller
 {
-    public function index(PackageService $packageService)
+    public function __invoke(PackageService $packageService)
     {
         return $packageService->index();
     }
-
-    public function create()
-    {
-        //
-    }
-
-    public function update()
-    {
-        //
-    }
-
 }

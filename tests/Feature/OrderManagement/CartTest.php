@@ -3,6 +3,7 @@
 namespace Tests\Feature\OrderManagement;
 
 use App\Domains\AccountManagement\Models\Address;
+use App\Domains\ApplicationManagement\Models\Package;
 use App\Domains\Authentication\Models\User;
 use App\Domains\OrderManagement\Models\Cart;
 use App\Domains\OrderManagement\Models\CartItem;
@@ -65,6 +66,26 @@ class CartTest extends FlowTestCase
             ->assertOk()->assertJsonFragment([
             'message' => 'success'
         ]);
+
+        $this->assertNotEmpty($user->cart);
+        $this->assertCount(1, $user->cart->items);
+    }
+
+    /** @test */
+    public function it_should_add_package_to_cart()
+    {
+        $user = User::factory()->has(AddressFactory::new(),'addresses')->create();
+        $Package = Package::factory()->create();
+        $variants =[];
+        $this->actingAs($user)->addItemToCart([
+            'variants' => $variants,
+            'quantity' => 1,
+            'buyable_id' => $Package->id,
+            'buyable_type' => class_basename($Package),
+        ],$user->addresses->first())
+            ->assertOk()->assertJsonFragment([
+                'message' => 'success'
+            ]);
 
         $this->assertNotEmpty($user->cart);
         $this->assertCount(1, $user->cart->items);

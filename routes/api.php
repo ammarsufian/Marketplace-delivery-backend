@@ -46,7 +46,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('promo-code/apply', ApplyPromoCodeController::class);
     Route::get('/payment-methods', PaymentMethodController::class);
     Route::resource('order', OrderController::class);
-    Route::get('/packages', [PackageController::class, 'index']);
+    Route::get('/packages', PackageController::class);
 });
 
 Route::get('/version', VersionController::class);

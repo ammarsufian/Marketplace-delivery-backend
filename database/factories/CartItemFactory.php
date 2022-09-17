@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Domains\AccountManagement\Models\Branch;
+use App\Domains\ApplicationManagement\Models\Package;
 use App\Domains\OrderManagement\Models\Cart;
 use App\Domains\OrderManagement\Models\CartItem;
 use App\Domains\ProductManagement\Models\EntityProduct;
@@ -21,7 +22,8 @@ class CartItemFactory extends Factory
      */
     public function definition()
     {
-        $buyable = EntityProduct::factory()->create();
+       // $buyable = EntityProduct::factory()->create();
+        $buyable = Package::factory()->create();
         return [
             'cart_id' => Cart::factory()->create()->id,
             'branch_id' => Branch::factory()->create()->id,
