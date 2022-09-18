@@ -30,6 +30,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('branch')->group(function () {
         Route::get('/', [ProviderBranchController::class, 'show']);
-        Route::put('/{branch}', [ProviderBranchController::class, 'updateScheduleBranch']);
+//        Route::put('/{branch}', [ProviderBranchController::class, 'updateScheduleBranch']);
     });
 });

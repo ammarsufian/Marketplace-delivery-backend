@@ -26,7 +26,6 @@ class LoginProviderRequest extends FormRequest
     {
         return [
             'mobile_number' => ['required', 'min:9', new ValidateMobileNumberRule()],
-            'password' => ['required', 'min:6'],
         ];
     }
 }
