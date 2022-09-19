@@ -12,6 +12,9 @@ use App\Domains\Authentication\Actions\DeactivateProviderAction;
 use App\Domains\Authentication\Http\Requests\LoginProviderRequest;
 use App\Domains\Authentication\Http\Requests\RegisterProviderRequest;
 use App\Domains\Authentication\Http\Resources\UserAuthenticationResource;
+use App\Rules\Rules;
+use App\Domains\Authentication\Rules\CheckIfUserIsActiveRule;
+use App\Domains\Authentication\Rules\CheckPasswordRule;
 
 class ProviderAuthenticationService
 {
@@ -20,9 +23,11 @@ class ProviderAuthenticationService
     {
         try {
             $user = (new LoginProviderAction($request))->execute();
-            throw_if(!Hash::check($request->get('password'), $user->password), Exception::class, 'Invalid password');
-            throw_if(!$user->is_active, Exception::class, 'User is not active');
-            //TODO::move exception handling into custom rules
+            $ruleResults = Rules::apply([
+                (new CheckPasswordRule($request->get('password'),$user)),
+            ]);
+            if($ruleResults->hasFailures())
+                $ruleResults->toException();
 
         } catch (Exception $exception) {
             return response()->json([
