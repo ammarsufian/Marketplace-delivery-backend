@@ -5,6 +5,7 @@ namespace App\Domains\OrderManagement\Http\Resources;
 use App\Domains\AccountManagement\Http\Resources\BranchResource;
 use App\Domains\AccountManagement\Http\Resources\OrderBranchResource;
 use App\Domains\AccountManagement\Http\Resources\UserAddressResource;
+use App\Domains\Authentication\Http\Resources\UserResource;
 use App\Domains\OrderManagement\Models\Order;
 use App\Domains\Transaction\Http\Resources\TransactionResource;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -27,7 +28,10 @@ class ProviderOrderResource extends JsonResource
             'total' => $this->total,
             'delivery' => $this->delivery,
             'transaction' => TransactionResource::make($this->transaction),
-            'created_at' => $this->created_at->toDateTimeString()
+            'created_at' => $this->created_at->toDateTimeString(),
+            'user' => UserResource::make($this->user),
+            'items' => OrderItemsResource::collection($this->items),
+            'items_count' => $this->items->count(),
         ];
     }
 }
