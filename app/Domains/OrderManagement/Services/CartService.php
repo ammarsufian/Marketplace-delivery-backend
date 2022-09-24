@@ -28,16 +28,15 @@ class CartService
                 (new CheckIfUserIsActiveRule()),
             ]);
 
-            if($ruleResults->hasFailures())
+            if ($ruleResults->hasFailures())
                 $ruleResults->toException();
 
             $model = (new GetModelByIdAction($request->get('buyable_type'), $request->get('buyable_id')))->execute();
-            if($model instanceof Package)
-            {
-                $model->branch=Branch::first();
+            if ($model instanceof Package) {
+                $model->branch = Branch::first();
             }
             $cart = (new GetUserCartAction($model->branch))->execute();
-            (new AddItemToCartAction($model,$cart, $request))->execute();
+            (new AddItemToCartAction($model, $cart, $request))->execute();
 
 
         } catch (RuleResultException $exception) {
@@ -58,7 +57,9 @@ class CartService
 
     public function index()
     {
-        return CartResource::make(Auth::user()->cart);
+        return response()->json([
+            'data' => CartResource::make(Auth::user()->cart)
+        ]);
     }
 
     public function deleteItemById(CartItem $cartItem)
@@ -69,23 +70,25 @@ class CartService
                 (new CheckIfUserIsActiveRule()),
             ]);
 
-             if($ruleResults->hasFailures())
-                    $ruleResults->toException();
+            if ($ruleResults->hasFailures())
+                $ruleResults->toException();
 
             (new DeleteCartItemByIdAction($cartItem))->execute();
 
-            if(!$cartItem->cart->items->count())
-                    $cartItem->cart->delete();
+            if (!$cartItem->cart->items->count())
+                $cartItem->cart->delete();
 
-        }catch (RuleResultException $exception) {
+        } catch (RuleResultException $exception) {
             return $exception->ruleResult()->toExceptionResponse();
-        }catch(\Exception $exception) {
+        } catch (\Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage(),
                 'success' => false
-            ],400);
+            ], 400);
         }
 
-        return CartResource::make($cartItem->cart->refresh());
+        return response()->json([
+            'data' => CartResource::make($cartItem->cart->refresh())
+        ]);
     }
 }
