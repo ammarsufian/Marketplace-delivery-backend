@@ -12,9 +12,9 @@ class BuyableResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->product->name,
-            'price' => $this->unit_price,
-            'image' => $this->product->image,
+            'name' => $this->name,
+            'price' => $this->unit_price ?? $this->price,
+            'image' => $this->image,
         ];
     }
 }

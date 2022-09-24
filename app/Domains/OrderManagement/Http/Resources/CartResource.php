@@ -10,7 +10,7 @@ class CartResource extends JsonResource
 {
     use CalculateCartPriceTrait;
 
-    public function toArray($request): array
+    public function toArray($request)
     {
         if(!isset($this->items))
             return [];
