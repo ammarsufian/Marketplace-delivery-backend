@@ -2,6 +2,8 @@
 
 namespace App\Domains\OrderManagement\Services;
 
+use App\Domains\AccountManagement\Models\Branch;
+use App\Domains\ApplicationManagement\Models\Package;
 use App\Domains\Authentication\Rules\CheckIfUserIsActiveRule;
 use App\Domains\OrderManagement\Actions\AddItemToCartAction;
 use App\Domains\OrderManagement\Actions\DeleteCartItemByIdAction;
@@ -30,8 +32,13 @@ class CartService
                 $ruleResults->toException();
 
             $model = (new GetModelByIdAction($request->get('buyable_type'), $request->get('buyable_id')))->execute();
+            if($model instanceof Package)
+            {
+                $model->branch=Branch::first();
+            }
             $cart = (new GetUserCartAction($model->branch))->execute();
             (new AddItemToCartAction($model,$cart, $request))->execute();
+
 
         } catch (RuleResultException $exception) {
             return $exception->ruleResult()->toExceptionResponse();

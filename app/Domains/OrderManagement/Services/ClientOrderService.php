@@ -24,6 +24,7 @@ use App\Rules\Rules;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
+use App\Domains\ApplicationManagement\Models\Package;
 
 class ClientOrderService
 {
@@ -34,7 +35,6 @@ class ClientOrderService
         $address = Address::find($request->get('addressId'));
         $paymentMethod = PaymentMethod::find($request->get('paymentMethodId'));
         $cart = Auth::user()->cart;
-
         try {
             $ruleResults = Rules::apply([
                 (new CheckIfUserIsActiveRule()),

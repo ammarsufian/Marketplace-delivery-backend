@@ -218,4 +218,9 @@ trait WithApi
     {
         return $this->getApi("/user/credit-card");
     }
+
+    public function packagesList(): TestResponse
+    {
+        return $this->getApi("/packages");
+    }
 }
