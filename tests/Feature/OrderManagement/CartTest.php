@@ -53,19 +53,19 @@ class CartTest extends FlowTestCase
     /** @test */
     public function it_should_add_entity_product_to_cart()
     {
-        $user = User::factory()->has(AddressFactory::new(),'addresses')->create();
+        $user = User::factory()->has(AddressFactory::new(), 'addresses')->create();
         $entityProduct = EntityProduct::factory()->create();
-        $variants =EntityProductVariants::factory()->count(3)->ofEntityProduct($entityProduct)
+        $variants = EntityProductVariants::factory()->count(3)->ofEntityProduct($entityProduct)
             ->create();
         $this->actingAs($user)->addItemToCart([
             'variants' => $variants->pluck('variant_id')->toArray(),
             'quantity' => $this->faker->randomDigit(2),
             'buyable_id' => $entityProduct->id,
             'buyable_type' => class_basename($entityProduct),
-        ],$user->addresses->first())
+        ], $user->addresses->first())
             ->assertOk()->assertJsonFragment([
-            'message' => 'success'
-        ]);
+                'message' => 'success'
+            ]);
 
         $this->assertNotEmpty($user->cart);
         $this->assertCount(1, $user->cart->items);
@@ -74,15 +74,14 @@ class CartTest extends FlowTestCase
     /** @test */
     public function it_should_add_package_to_cart()
     {
-        $user = User::factory()->has(AddressFactory::new(),'addresses')->create();
-        $Package = Package::factory()->create();
-        $variants =[];
+        $user = User::factory()->has(AddressFactory::new(), 'addresses')->create();
+        $package = Package::factory()->create();
         $this->actingAs($user)->addItemToCart([
-            'variants' => $variants,
+            'variants' => [],
             'quantity' => 1,
-            'buyable_id' => $Package->id,
-            'buyable_type' => class_basename($Package),
-        ],$user->addresses->first())
+            'buyable_id' => $package->id,
+            'buyable_type' => class_basename($package),
+        ], $user->addresses->first())
             ->assertOk()->assertJsonFragment([
                 'message' => 'success'
             ]);
@@ -97,9 +96,9 @@ class CartTest extends FlowTestCase
         $cart = Cart::factory()->create();
         $cartItem = CartItem::factory()->ofCart($cart)->create();
         $address = Address::factory()->ofUser($cart->user)->create();
-        $this->actingAs($cart->user)->deleteCartItemById($cartItem,$address)->assertOk();
+        $this->actingAs($cart->user)->deleteCartItemById($cartItem, $address)->assertOk();
 
-        $this->assertEquals(0,$cart->items->count() ?? 0);
+        $this->assertEquals(0, $cart->items->count() ?? 0);
     }
 
     /** @test */
@@ -108,8 +107,8 @@ class CartTest extends FlowTestCase
         $cart = Cart::factory()->create();
         $cartItem = CartItem::factory()->create();
         $address = Address::factory()->ofUser($cart->user)->create();
-        $this->actingAs($cart->user)->deleteCartItemById($cartItem,$address)->assertStatus(400);
+        $this->actingAs($cart->user)->deleteCartItemById($cartItem, $address)->assertStatus(400);
 
-        $this->assertCount(0,$cart->refresh()->items);
+        $this->assertCount(0, $cart->refresh()->items);
     }
 }

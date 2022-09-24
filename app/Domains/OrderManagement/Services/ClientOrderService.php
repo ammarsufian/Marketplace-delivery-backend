@@ -35,10 +35,6 @@ class ClientOrderService
         $address = Address::find($request->get('addressId'));
         $paymentMethod = PaymentMethod::find($request->get('paymentMethodId'));
         $cart = Auth::user()->cart;
-        if(Auth::user()->cart->items->first()->buyable instanceof Package)
-        {
-            $package = Auth::user()->cart->items->first()->buyable;
-        }
         try {
             $ruleResults = Rules::apply([
                 (new CheckIfUserIsActiveRule()),

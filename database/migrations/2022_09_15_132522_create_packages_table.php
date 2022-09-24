@@ -21,6 +21,8 @@ class CreatePackagesTable extends Migration
             $table->unsignedInteger('covered_order_counts');
             $table->unsignedInteger('covered_month_counts');
             $table->boolean('is_active')->default(true);
+            $table->unsignedInteger('branch_id');
+            $table->foreign('branch_id')->references('id')->on('branches');
             $table->timestamps();
         });
     }

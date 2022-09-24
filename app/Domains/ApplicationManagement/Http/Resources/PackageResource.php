@@ -16,7 +16,6 @@ class PackageResource extends JsonResource
             'covered_order_counts' => $this->covered_order_counts,
             'covered_month_counts' => $this->covered_month_counts,
             'price' => $this->price,
-            'is_active' => $this->is_active,
         ];
     }
 }

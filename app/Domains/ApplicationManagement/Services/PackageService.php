@@ -14,7 +14,7 @@ use App\Domains\ApplicationManagement\Actions\CreateUserPackageAction;
 
 class PackageService
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
             $ruleResults = Rules::apply([
@@ -25,7 +25,8 @@ class PackageService
                 $ruleResults->toException();
             }
 
-            $packages = (new GetPackageListAction())->execute();
+            $packages = (new GetPackageListAction($request))->execute();
+
         } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage(),
@@ -40,6 +41,7 @@ class PackageService
     {
         try {
             (new CreateUserPackageAction($package))->execute();
+
         } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage(),

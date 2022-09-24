@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
@@ -15,18 +16,17 @@ class Package extends Resource
 {
     use WithTranslationFields;
 
-
     public static $model = PackageModel::class;
     public static $title = 'name';
-    public static $group='Application Management';
+    public static $group = 'Application Management';
     public static $search = [
-        'id','name'
+        'id', 'name'
     ];
 
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -40,13 +40,14 @@ class Package extends Resource
             Number::make('Covered Month Counts', 'covered_month_counts'),
             Number::make('Price', 'price'),
             Boolean::make('Is Active', 'is_active'),
+            BelongsTo::make('Branch', 'branch', Branch::class)
         ];
     }
 
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -57,7 +58,7 @@ class Package extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -68,7 +69,7 @@ class Package extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -79,7 +80,7 @@ class Package extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function actions(Request $request)

@@ -14,22 +14,21 @@ class CreateUserPackageAction implements Actionable
 {
     protected User $user;
     protected Package $package;
+
     public function __construct(Package $package)
     {
         $this->user = Auth::user();
         $this->package = $package;
     }
+
     public function execute(): Collection
     {
-        $months=floor($this->package->covered_month_counts);
-        $days=floor(($this->package->covered_month_counts-$months)*30);
-        $userPackage = UserPackage::updateOrCreate([
+        return UserPackage::create([
             'user_id' => $this->user->id,
             'package_id' => $this->package->id,
             'covered_order_counts' => $this->package->covered_order_counts,
-            'expiration_date' => Carbon::now()->addMonths($months)->addDays($days),
+            'expiration_date' => Carbon::now()->addMonths($this->package->covered_month_counts),
             'status' => 'active',
         ]);
-        return $userPackage;
     }
 }

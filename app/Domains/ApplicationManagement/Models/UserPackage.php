@@ -2,9 +2,11 @@
 
 namespace App\Domains\ApplicationManagement\Models;
 
+use App\Domains\Authentication\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Database\Factories\UserPackageFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class UserPackage extends Model
 {
@@ -17,4 +19,8 @@ class UserPackage extends Model
         return UserPackageFactory::new();
     }
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

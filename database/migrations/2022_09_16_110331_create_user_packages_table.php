@@ -15,9 +15,9 @@ class CreateUserPackagesTable extends Migration
     {
         Schema::create('user_packages', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('covered_order_counts');
-            $table->timestamp('expiration_date');
-            $table->enum('status', ['active','expired'])->default('active');
+            $table->unsignedInteger('remaining_order_counts');
+            $table->dateTime('expiration_date');
+            $table->enum('status', ['active', 'in-active', 'expired'])->default('active');
             $table->unsignedInteger('package_id');
             $table->foreign('package_id')->references('id')->on('packages');
             $table->unsignedInteger('user_id');
