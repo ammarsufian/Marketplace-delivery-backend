@@ -16,7 +16,6 @@ class DeleteCartWithItemsAction implements Actionable
 
     public function execute(): bool
     {
-        $this->cart->items()->delete();
         return $this->cart->delete();
     }
 }
