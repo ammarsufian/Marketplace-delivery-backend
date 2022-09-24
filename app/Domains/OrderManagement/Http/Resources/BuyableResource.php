@@ -10,18 +10,11 @@ class BuyableResource extends JsonResource
 
     public function toArray($request): array
     {
-        if($this instanceof EntityProduct) {
-            return [
-                'id' => $this->id,
-                'name' => $this->product->name,
-                'price' => $this->unit_price,
-                'image' => $this->product->image,
-            ];
-        }
-            return [
-                'id'=> $this->id,
-                'name'=>$this->name,
-                'price'=>$this->price,
-            ];
+        return [
+            'id' => $this->id,
+            'name' => $this->product->name,
+            'price' => $this->unit_price,
+            'image' => $this->product->image,
+        ];
     }
 }
