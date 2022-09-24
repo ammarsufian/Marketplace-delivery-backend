@@ -15,12 +15,15 @@ class EntityProduct extends Model
 {
     use HasFactory;
 
-    protected $guarded=[];
+    protected $guarded = [];
     const ENTITY_PRODUCT_STATUS = [
         'active',
         'in-active'
     ];
     const ACTIVE_STATUS = 'active';
+
+    protected $with = ['product'];
+    protected $appends = ['name', 'image'];
 
     protected static function newFactory(): EntityProductFactory
     {
@@ -62,5 +65,15 @@ class EntityProduct extends Model
     public function scopeOfBranch(Builder $query, int $branchId): Builder
     {
         return $query->where('branch_id', $branchId);
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->product->name;
+    }
+
+    public function getImageAttribute()
+    {
+        return $this->product->image;
     }
 }
