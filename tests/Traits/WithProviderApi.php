@@ -97,4 +97,12 @@ trait WithProviderApi
     {
         return $this->putProvider("/branch/{$branch->id}", $attributes);
     }
+    public function getBranchStatus(): TestResponse
+    {
+        return $this->getProvider("/branch/active");
+    }
+    public function updateBranchStatus(array $attributes=[]): TestResponse
+    {
+        return $this->putProvider("/branch/active", $attributes);
+    }
 }

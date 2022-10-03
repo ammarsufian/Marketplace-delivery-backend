@@ -61,6 +61,7 @@ class ProviderBranchTest extends FlowTestCase
             )->assertStatus(422);
     }
 
+    /** @test  */
     public function getSchedule($start='09:00',$end='18:00'): array
     {
         return
@@ -74,5 +75,37 @@ class ProviderBranchTest extends FlowTestCase
                 "friday" => [["start" => $start,"end" => $end]],
 
             ];
+    }
+
+    /** @test  */
+    public function it_should_show_branch_status()
+    {
+        $this->actingAs($this->user)
+            ->getBranchStatus($this->branch)
+            ->assertOk();
+    }
+
+    /** @test  */
+    public function it_should_update_status_barnch()
+    {
+        $this->actingAs($this->user)
+            ->updateBranchStatus(
+                [
+                    'status' => Branch::ACTIVE_STATUS_BRANCH,
+                    ]
+            )->assertOk();
+
+        $this->assertEquals($this->branch->refresh()->status, Branch::ACTIVE_STATUS_BRANCH);
+    }
+
+    /** @test  */
+    public function it_can_not_update_status_barnch_valid_status()
+    {
+        $this->actingAs($this->user)
+            ->updateBranchStatus(
+                [
+                    'status' => 5,
+                    ]
+            )->assertStatus(422);
     }
 }

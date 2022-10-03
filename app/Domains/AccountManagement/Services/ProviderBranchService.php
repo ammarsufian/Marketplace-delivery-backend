@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Domains\AccountManagement\Models\Branch;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Domains\AccountManagement\Actions\UpdateStatusBranchAction;
 use App\Domains\AccountManagement\Actions\UpdateScheduleBranchAction;
 use App\Domains\AccountManagement\Http\Requests\ScheduleBranchRequest;
+use App\Domains\AccountManagement\Http\Resources\BranchStatusResource;
 use App\Domains\AccountManagement\Http\Resources\ProviderBranchResource;
+use App\Domains\AccountManagement\Http\Requests\StatusBranchRequest;
 
 
 class ProviderBranchService
@@ -32,4 +35,25 @@ class ProviderBranchService
         }
         return ProviderBranchResource::make($branch->refresh());
     }
+
+    public function showActive(): JsonResource
+    {
+        $branch = Auth::user()->branches->first();
+        return BranchStatusResource::make($branch);
+    }
+
+    public function updateActive(StatusBranchRequest $request): JsonResource
+    {
+        $branch = Auth::user()->branches->first();
+         try {
+            $results = (new UpdateStatusBranchAction($request, $branch))->execute();
+        } catch (Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage(),
+                'success' => false
+            ], 400);
+        }
+        return BranchStatusResource::make($branch);
+    }
+
 }

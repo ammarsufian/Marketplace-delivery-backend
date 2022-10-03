@@ -27,7 +27,7 @@ class ProviderBranchResource extends JsonResource
             'brand' => new BrandResource($this->brand),
             'schedule' => $this->schedule,
             'status' => $this->status,
-            'delivery_time' => $this->delivery_time,   
+            'delivery_time' => $this->delivery_time,
             'contact_cafe' => [
                 'mobile_number' => data_get($this->contact_us, 'mobile_number'),
                 'email' => data_get($this->contact_us, 'email')
@@ -35,7 +35,7 @@ class ProviderBranchResource extends JsonResource
             'open_hour' => $open_dateTime->format('h:i A'),
             'close_hour' => $close_dateTime->format('h:i A'),
             'categories' => CategoryResource::collection($this->categories)
-            
+
         ];
     }
 }

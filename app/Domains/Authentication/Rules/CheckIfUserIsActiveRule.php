@@ -7,10 +7,17 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckIfUserIsActiveRule implements Rulable
 {
-
+    protected $user;
+    public function __construct($user=null)
+    {
+        $this->user = $user;
+    }
     public function run(): bool
     {
-        return (bool) Auth::user()->is_active;
+        if($this->user == null)
+            $this->user = Auth::user();
+
+        return (bool) $this->user->is_active;
     }
 
     public function getMessage(): string

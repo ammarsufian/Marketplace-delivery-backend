@@ -25,6 +25,7 @@ class ProviderAuthenticationService
             $user = (new LoginProviderAction($request))->execute();
             $ruleResults = Rules::apply([
                 (new CheckPasswordRule($request->get('password'),$user)),
+                (new CheckIfUserIsActiveRule($user)),
             ]);
             if($ruleResults->hasFailures())
                 $ruleResults->toException();
