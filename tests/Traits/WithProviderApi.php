@@ -105,4 +105,8 @@ trait WithProviderApi
     {
         return $this->putProvider("/branch/active", $attributes);
     }
+    public function getProviderBranch(): TestResponse
+    {
+        return $this->getProvider("/branch/");
+    }
 }

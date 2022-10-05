@@ -32,6 +32,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/', [ProviderBranchController::class, 'show']);
         Route::get('/active', [ProviderBranchController::class, 'showActive']);
         Route::put('/active', [ProviderBranchController::class, 'updateActive']);
-        Route::put('/{branch}', [ProviderBranchController::class, 'updateScheduleBranch']);
+     //   Route::put('/{branch}', [ProviderBranchController::class, 'updateScheduleBranch']);
     });
 });
