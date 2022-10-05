@@ -5,6 +5,7 @@ namespace App\Nova;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Password;
 use Vyuldashev\NovaPermission\RoleSelect;
@@ -60,6 +61,7 @@ class User extends Resource
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
             Text::make('Mobile Number'),
+            Boolean::make('Active','is_active')->default(true),
             RoleSelect::make('Role', 'roles'),
             DateTime::make('Created At')->exceptOnForms(),
         ];
