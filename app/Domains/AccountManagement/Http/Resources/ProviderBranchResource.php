@@ -2,8 +2,7 @@
 
 namespace App\Domains\AccountManagement\Http\Resources;
 
-
-use Illuminate\Support\Facades\Auth;
+use App\Domains\Authentication\Http\Resources\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProviderBranchResource extends JsonResource
@@ -14,22 +13,17 @@ class ProviderBranchResource extends JsonResource
      */
     public function toArray($request): array
     {
-        $user= Auth::user();
         return [
             'id' => $this->id,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
             'brand' => new BrandResource($this->brand),
+            'status' => $this->status,
             'contact_cafe' => [
                 'mobile_number' => data_get($this->contact_us, 'mobile_number'),
                 'email' => data_get($this->contact_us, 'email')
             ],
-             'porvider'=>[
-                 'id'=>$user->id,
-                 'name'=>$user->name,
-                 'email'=>$user->email,
-                 'mobile_number'=>$user->mobile_number,
-             ],
+            'provider' => UserResource::make($this->owners->first())
         ];
     }
 }

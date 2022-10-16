@@ -6,38 +6,25 @@ use Illuminate\Http\Request;
 use App\Domains\Interfaces\Actionable;
 use App\Domains\AccountManagement\Models\Branch;
 use App\Domains\AccountManagement\Http\Requests\StatusBranchRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateStatusBranchAction implements Actionable
 {
-    /**
-     * @var Request
-     */
-    private $request;
+    private Request $request;
+    private Branch $branch;
 
-    /**
-     * @var Branch
-     */
-    private $branch;
-
-    /**
-     * UpdateStatusBranchAction constructor.
-     * @param Request $request
-     * @param Branch $branch
-     */
-    public function __construct(StatusBranchRequest $request, Branch $branch)
+    public function __construct(StatusBranchRequest $request)
     {
         $this->request = $request;
-        $this->branch = $branch;
+        $this->branch = Auth::user()->branches->first();
     }
 
-    /**
-     * @return bool
-     */
-    public function execute(): bool
+    public function execute(): Branch
     {
-        return $this->branch->update([
-            'status' => $this->request->status
+        $this->branch->update([
+            'status' => $this->request->get('status')
         ]);
 
+        return $this->branch->fresh();
     }
 }

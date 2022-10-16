@@ -36,24 +36,19 @@ class ProviderBranchService
         return ProviderBranchResource::make($branch->refresh());
     }
 
-    public function showActive(): JsonResource
-    {
-        $branch = Auth::user()->branches->first();
-        return BranchStatusResource::make($branch);
-    }
 
-    public function updateActive(StatusBranchRequest $request): JsonResource
+    public function changeStatus(StatusBranchRequest $request)
     {
-        $branch = Auth::user()->branches->first();
-         try {
-            $results = (new UpdateStatusBranchAction($request, $branch))->execute();
+        try {
+            $results = (new UpdateStatusBranchAction($request))->execute();
         } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage(),
                 'success' => false
             ], 400);
         }
-        return BranchStatusResource::make($branch);
+
+        return ProviderBranchResource::make($results);
     }
 
 }

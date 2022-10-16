@@ -9,16 +9,17 @@ use App\Domains\Authentication\Models\User;
 class CheckPasswordRule implements Rulable
 {
     protected string $password;
-    protected string $hashedPassword;
+    protected string $currentPassword;
+
     public function __construct(string $password, User $user)
     {
         $this->password = $password;
-        $this->hashedPassword = $user->password;
+        $this->currentPassword = $user->password;
     }
 
     public function run(): bool
     {
-        return Hash::check($this->password, $this->hashedPassword);
+        return Hash::check($this->password, $this->currentPassword);
     }
 
     public function getMessage(): string
