@@ -23,7 +23,7 @@ class VariantGroup extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'type';
     public static $group ='Product Management';
 
 
@@ -33,7 +33,7 @@ class VariantGroup extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'type',
     ];
 
     /**

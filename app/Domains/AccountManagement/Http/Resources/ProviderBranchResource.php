@@ -18,12 +18,15 @@ class ProviderBranchResource extends JsonResource
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
             'brand' => new BrandResource($this->brand),
-            'status' => $this->status,
+            'status' => (bool) $this->status,
             'contact_cafe' => [
                 'mobile_number' => data_get($this->contact_us, 'mobile_number'),
                 'email' => data_get($this->contact_us, 'email')
             ],
-            'provider' => UserResource::make($this->owners->first())
+            'schedule' => $this->schedule,
+            'provider' => UserResource::make($this->owners->first()),
+            'created_at' => $this->created_at->toDateTimeString(),
+            'rate' => 5,
         ];
     }
 }

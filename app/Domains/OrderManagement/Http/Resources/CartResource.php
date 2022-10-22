@@ -13,7 +13,7 @@ class CartResource extends JsonResource
     public function toArray($request)
     {
         if(!isset($this->items))
-            return [];
+            return json_encode([]);
 
         $cartItems = CartItemsResource::collection($this->items);
         return array_merge([
