@@ -13,14 +13,14 @@
                 </button>
                 <div class="nav-links-container">
                     <a href="#" class="nav__link">
-                        <span class="nav__text">Blog</span>
+                        <span class="nav__text">{{ __('messages.Blog') }}</span>
                     </a>
                     <a href="{{Route('contact')}}" class="nav__link">
-                        <span class="nav__text">Contact us</span>
+                        <span class="nav__text">{{__('messages.Contact us')}}</span>
                     </a>
                     <a href="#" class="nav__link">
                         <i class="material-symbols-outlined nav__icon">language</i>
-                        <span class="nav__text language-en-size">English</span>
+                        <span class="nav__text language-en-size">{{ __('messages.en')}} </span>
                     </a>
                 </div>
             </nav>

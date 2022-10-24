@@ -35,7 +35,7 @@
             <a href="{{Route('partner')}}">
                 <button class="btn-partner">
                     <div class="text-partner">
-                        Become a Partner
+                        {{('Become a Partner')}}
                     </div>
                     <div class="material-symbols-outlined arrow_forward">
                         arrow_forward
@@ -52,14 +52,14 @@
         </button>
         <div class="nav-links-container">
             <a href="#" class="nav__link">
-                <span class="nav__text">Blog</span>
+                <span class="nav__text">{{__('messages.Blog')}}</span>
             </a>
             <a href="{{Route('contact')}}" class="nav__link">
-                <span class="nav__text">Contact us</span>
+                <span class="nav__text">{{__('messages.Contact us')}}</span>
             </a>
             <a href="#" class="nav__link">
                 <i class="material-symbols-outlined nav__icon">language</i>
-                <span class="nav__text language-en-size">English</span>
+                <span class="nav__text language-en-size">{{ __('messages.ar')}}</span>
             </a>
         </div>
     </nav>
@@ -74,10 +74,10 @@
         <div class="card cova-app">
             <div class="card-header">
                 <div class="card-text">
-                    Cova App
+                    {{__('messages.Cova App')}}
                 </div>
                 <h1 class="text-header">
-                    Time For Coffee?
+                    {{__('messages.Time For Coffee?')}}
                 </h1>
             </div>
             <div class="card-body">
@@ -88,8 +88,8 @@
             </div>
 
             <div class="card-footer flex flex-start donload-now-more">
-                <button class="btn-color-o radius-5">Download now</button>
-                <button class="btn-color-w radius-5">Learn more</button>
+                <button class="btn-color-o radius-5">{{__('messages.Donwload now')}}</button>
+                <button class="btn-color-w radius-5">{{__('messages.Learn More')}}</button>
             </div>
         </div>
         <div class="absolute-clean-top"></div>
@@ -233,47 +233,42 @@
                 <a href="#" class="fa fa-instagram"></a>
                 <a href="#" class="fa fa-twitter"></a>
             </div>
-
         </section>
-
         <section class="list-link-footer">
             <div class="flex flex-justify-center flex-wrap">
                 <div class="store-size-btn">
                     <a href="#">
-                        <img src="{{asset('cova/landingPage/img/App_Store_Badge.svg.png')}}" alt="">
+                        <img src="{{ asset('cova/landingPage/img/App_Store_Badge.svg.png') }}" alt="">
                     </a>
                 </div>
                 <div class="store-size-btn">
                     <a href="#">
-                        <img src="{{asset('cova/landingPage/img/Google_Play_Store_badge.svg.png')}}" alt="">
+                        <img src="{{ asset('cova/landingPage/img/Google_Play_Store_badge.svg.png') }}" alt="">
                     </a>
                 </div>
                 <div class="store-size-btn">
                     <a href="#">
-                        <img src="{{asset('cova/landingPage/img/app-gallery.webp')}}" alt="">
+                        <img src="{{ asset('cova/landingPage/img/app-gallery.webp') }}" alt="">
                     </a>
-
                 </div>
             </div>
             <nav class="nav-footer">
                 <ul>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="{{Route('contact')}}">Contact</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="{{Route('rider')}}">Become a rider </a></li>
-                    <li><a href="{{Route('partner')}}">Become a partner</a></li>
+                    <li><a href="#">{{__('messages.Blog')}}</a></li>
+                    <li><a href="{{Route('contact')}}">{{__('messages.Contact')}}</a></li>
+                    <li><a href="#">{{__('messages.About us')}}</a></li>
+                    <li><a href="{{ Route('rider') }}">{{__('messages.Become a rider')}} </a></li>
+                    <li><a href="{{ Route('partner') }}">{{__('messages.Become a partner')}}</a></li>
                 </ul>
             </nav>
-
         </section>
-
         <section class="social-media copy-cova">
             <!-- © 2022 Cova Terms & Conditions -->
             <div>
                 &copy; 2022 Cova
             </div>
             <div>
-                Terms & Conditions
+                {{__('messages.Terms & Conditions')}}
             </div>
         </section>
     </footer>

@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
            'Package'=> Package::class
         ]);
 
-        URL::forceScheme('https');
+        // URL::forceScheme('https');
     }
 
     /**

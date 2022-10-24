@@ -1,0 +1,35 @@
+<?php
+
+return [
+    'welcome' => 'Welcome to our application!',
+    'ar' => 'Arabic',
+    'en' => 'English',
+    'Blog' => 'Blog',
+    'Cova App' => 'Cova App',
+    'Contact us' => 'Contact us',
+    'Contact'=>'Contact',
+    'Become a partner' => 'Become a partner',
+    'Become a rider' => 'Become a rider',
+    'About us' => 'About us',
+    'Terms & Conditions' => 'Terms & Conditions',
+    'Time For Coffee?' => 'Time For Coffee?',
+    'Order your cofee,and we will get it delivere to you!' => 'Order your cofee,and we will get it delivere to you!',
+    'Learn More' => 'Learn More',
+    'Donwload now' => 'Donwload now',
+    '+50000 cups of coffee'=>'+50000 cups of coffee',
+    'delivered to thousands of coffee lover'=>'delivered to thousands of coffee lover',
+    'about us section'=>'about us section',
+    'All your coffee needs & essentials'=>'All your coffee needs & essentials',
+    'Coffee any time'=>'Coffee any time',
+    'any time section'=> 'What is better than early morning coffee, a late afternoon latte, or an after-dinner espresso. Cova is the ultimate convenience. Fresh, tasty coffee at your doorstep and you don\'t have to lift a finger.',
+    'Track orders to your door'=>'Track orders to your door',
+    'track orders section'=>'',
+    'Deliver with Cova'=>'Deliver with Cova',
+    'Partner with Cova'=>'Partner with Cova',
+    'Join us as a rider and increase your income, register now!'=>'Join us as a rider and increase your income, register now!',
+    'Grow your business and reach new customers by partnering with us.'=>'Grow your business and reach new customers by partnering with us.',
+    'Apply as a rider'=>'Apply as a rider',
+    'Apply as a partner'=>'Apply as a partner',
+
+
+];

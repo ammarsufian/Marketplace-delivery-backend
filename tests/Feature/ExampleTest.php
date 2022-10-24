@@ -14,8 +14,10 @@ class ExampleTest extends TestCase
      */
     public function test_example()
     {
+        // redirect to default language
         $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $response->assertStatus(302);
+        $response->assertRedirect('/'.app()->getLocale());
+        
     }
 }
