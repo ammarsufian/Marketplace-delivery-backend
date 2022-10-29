@@ -18,7 +18,7 @@ return [
     'Donwload now' => 'Donwload now',
     '+50000 cups of coffee'=>'+50000 cups of coffee',
     'delivered to thousands of coffee lover'=>'delivered to thousands of coffee lover',
-    'about us section'=>'about us section',
+    'about us section'=>'We in Cova know precisely how much passion coffee lovers have, and how magical the different flavors and aromas emanating from the cups are, which go directly to the hearts before the minds. we were keen to provide cafes and products that suit and satisfy the different moods of a people belonging to the homeland of coffee that lives in the hearts',
     'All your coffee needs & essentials'=>'All your coffee needs & essentials',
     'Coffee any time'=>'Coffee any time',
     'any time section'=> 'What is better than early morning coffee, a late afternoon latte, or an after-dinner espresso. Cova is the ultimate convenience. Fresh, tasty coffee at your doorstep and you don\'t have to lift a finger.',
