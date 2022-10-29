@@ -13,6 +13,6 @@ class NewJoinerController extends Controller
     public function __invoke(NewJoinerRequest $request, NewJoinerService $joinUserService)
     {
         $joinUserService->create($request);
-        return redirect()->route('landing-page');
+        return redirect()->route('landing-page', app()->getLocale());
     }
 }

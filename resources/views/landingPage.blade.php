@@ -36,6 +36,18 @@
                 </a>
             </div>
         </div>
+        <div id="header-right" class="partner header-{{ (App::getLocale()=='ar')?'left':'right'}}">
+            <a href="{{Route('partner',App::getLocale())}}">
+                <button class="btn-partner">
+                    <div class="text-partner">
+                        Become a Partner
+                    </div>
+                    <div class="material-symbols-outlined arrow_forward">
+                        arrow_forward
+                    </div>
+                </button>
+            </a>
+        </div>
     </header>
     <section class="margin-top-170" dir="ltr">
         <div class="section-1-img-text">
@@ -186,12 +198,6 @@
     @extends('layouts.footer')
     
     <script src="{{asset("cova/landingPage/app.js")}}"></script>
-    <script>
-        let lang = "{{app()->getLocale()}}";
-        if (lang == "ar") {
-            // document.querySelector(".cova-app").style.margin = "0px";
-        }
-    </script>
 </body>
 
 </html>
