@@ -1,0 +1,105 @@
+/*
+ * header
+*/
+body {
+    margin: 0;
+}
+header {
+    display: flex;
+    justify-content: flex-start;
+    height: 91px;
+    align-items: center;
+    background: #E5AB6B;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.header-mobile {
+    padding: 0;
+    justify-content: space-between;
+}
+
+.header-left {
+    display: flex;
+    height: 91px;
+    width: 100%;
+
+}
+.fixed{
+    position: fixed;
+    z-index: 9999;
+}
+
+/* LOGO */
+.logo {
+    font-size: 32px;
+    display: flex;
+}
+
+.logo-img {
+    width: 126px;
+    height: 32px;
+    max-height: 32px;
+}
+
+.header-bg{
+    position: fixed;
+    top: 0;
+}
+
+/* MENU */
+
+
+/*HAMBURGER MENU*/
+.hamburger {
+
+    color: #fff;
+}
+
+
+/*
+ * content section
+ */
+.content {
+    width: 80%;
+    margin: 0 auto;
+}
+.content h1{
+    font-weight: 500;
+    text-align: center;
+    margin: 91px;
+    font-size: 46px;
+    line-height: 32px;
+    text-align: center;
+    letter-spacing: 0.1px;
+    color: #000000;
+}
+.content p{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.1px;
+}
+@media screen and (max-width: 500px) {
+    .content { 
+        width: 90%; 
+        margin-top: 50px;
+    }
+    .content h1 { 
+        margin: 0;
+        margin-bottom: 25px;
+        font-size: 32px;
+    }
+    /* .content p{
+
+    } */
+}
+.text-align-right{
+    text-align: right;
+}
+.text-align-left{
+    text-align: left;
+}

@@ -30,10 +30,10 @@
         <nav class="nav-footer">
             <ul>
                 <li><a href="#">{{__('messages.Blog')}}</a></li>
-                <li><a href="{{Route('contact')}}">{{__('messages.Contact')}}</a></li>
+                <li><a href="{{Route('contact',App::getLocale())}}">{{__('messages.Contact')}}</a></li>
                 <li><a href="#">{{__('messages.About us')}}</a></li>
-                <li><a href="{{ Route('rider') }}">{{__('messages.Become a rider')}} </a></li>
-                <li><a href="{{ Route('partner') }}">{{__('messages.Become a partner')}}</a></li>
+                <li><a href="{{ Route('rider',App::getLocale()) }}">{{__('messages.Become a rider')}} </a></li>
+                <li><a href="{{ Route('partner',App::getLocale()) }}">{{__('messages.Become a partner')}}</a></li>
             </ul>
         </nav>
     </section>
