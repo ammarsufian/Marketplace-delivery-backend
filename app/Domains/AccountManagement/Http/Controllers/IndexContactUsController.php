@@ -4,7 +4,7 @@ namespace App\Domains\AccountManagement\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
-class IndexContactUsController extends Controller
+class indexContactUsController extends Controller
 {
 
     public function __invoke()

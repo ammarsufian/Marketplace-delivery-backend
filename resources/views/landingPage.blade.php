@@ -18,9 +18,9 @@
     <title>Cova Home</title>
 </head>
 
-<body {{ (App::getLocale()=='ar')? 'dir=rtl class=font-NotoSans': 'dir=ltr class=font-Helvetica'}}>
+<body {{ (app()->getLocale()=='ar')? 'dir=rtl class=font-NotoSans': 'dir=ltr class=font-Helvetica'}}>
     <header id="header" class="header flex flex-between">
-        <div id="header-left" class="flex flex-start header-{{ (App::getLocale()=='ar')?'right':'left'}}">
+        <div id="header-left" class="flex flex-start header-{{ (app()->getLocale()=='ar')?'right':'left'}}">
             <div class="menu-link">
                 <!-- USING CHECKBOX HACK -->
                 <input type="checkbox" id="checkbox_toggle" />
@@ -36,8 +36,8 @@
                 </a>
             </div>
         </div>
-        <div id="header-right" class="partner header-{{ (App::getLocale()=='ar')?'left':'right'}}">
-            <a href="{{Route('partner',App::getLocale())}}">
+        <div id="header-right" class="partner header-{{ (app()->getLocale()=='ar')?'left':'right'}}">
+            <a href="{{Route('partner',app()->getLocale())}}">
                 <button class="btn-partner">
                     <div class="text-partner">
                         Become a Partner
@@ -59,7 +59,7 @@
                     <img class="cofe" src="{{asset('cova/landingPage/img/cofe1.png')}}" />
                 </div>
             </div>
-            <div class="card cova-app" {{ (App::getLocale()=='ar')? 'dir=rtl': 'dir=ltr' }}>
+            <div class="card cova-app" {{ (app()->getLocale()=='ar')? 'dir=rtl': 'dir=ltr' }}>
                 <div class="card-header">
                     <div class="card-text">
                         {{__('messages.Cova App')}}
@@ -166,7 +166,7 @@
                     {{__('messages.Join us as a rider and increase your income, register now!')}}
                 </div>
                 <div class="card-rider-partner-footer">
-                    <a href="{{Route('rider',App::getLocale())}}">
+                    <a href="{{Route('rider',app()->getLocale())}}">
                         <button class="btn-color-o radius-5">
                             {{__('messages.Apply as a rider')}}
                         </button>
@@ -185,7 +185,7 @@
                     {{__('messages.Grow your business and reach new customers by partnering with us.')}}
                 </div>
                 <div class="card-rider-partner-footer">
-                    <a href="{{Route('partner',App::getLocale())}}">
+                    <a href="{{Route('partner',app()->getLocale())}}">
                         <button class="btn-color-o radius-5">
                             {{__('messages.Apply as a partner')}}
                         </button>

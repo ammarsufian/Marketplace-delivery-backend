@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('cova/app.css') }}">
     <title>@yield('title')</title>
 </head>
-<body {{ (App::getLocale()=='ar')? 'dir=rtl class=font-NotoSans': 'dir=ltr class=font-Helvetica'}}>
+<body {{ (app()->getLocale()=='ar')? 'dir=rtl class=font-NotoSans': 'dir=ltr class=font-Helvetica'}}>
 @include('layouts.header')
 
 <div>

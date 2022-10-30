@@ -17,7 +17,7 @@
     <title>Contact Us</title>
 </head>
 
-<body {{ (App::getLocale()=='ar')? 'dir=rtl class=font-NotoSans': 'dir=ltr class=font-Helvetica'}}>
+<body {{ (app()->getLocale()=='ar')? 'dir=rtl class=font-NotoSans': 'dir=ltr class=font-Helvetica'}}>
 @include('layouts.header')
 <div class="flex  contact-us">
     <aside class="contact">
@@ -30,7 +30,7 @@
         </div>
     </aside>
     <section class="contact-form">
-        <form action="{{ route('contact.store') }}" method="post">
+        <form action="{{ route('contact.store',app()->getLocale()) }}" method="post">
             @csrf
             <h1>{{__('messages.Send us')}}</h1>
             <div class="group-name">

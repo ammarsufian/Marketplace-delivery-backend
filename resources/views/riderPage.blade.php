@@ -5,7 +5,7 @@
 {{asset('cova/partnerRiderPage/img/rider.png')}}
 @endsection
 @section('post')
-{{route('rider.store')}}
+{{route('rider.store', app()->getLocale())}}
 @endsection
 @section('content')
 <div class="wrapper-header">

@@ -8,14 +8,14 @@
         <a href="#" class="nav__link">
             <span class="nav__text">{{ __('messages.Blog') }}</span>
         </a>
-        <a href="{{Route('contact',App::getLocale())}}" class="nav__link">
+        <a href="{{Route('contact',app()->getLocale())}}" class="nav__link">
             <span class="nav__text">{{__('messages.Contact us')}}</span>
         </a>
-        <a href="{{Route('terms-and-conditions',App::getLocale())}}" class="nav__link">
+        <a href="{{Route('terms-and-conditions',app()->getLocale())}}" class="nav__link">
             <span class="nav__text">{{__('messages.Terms & Conditions')}}</span>
         </a>
         @foreach ( config('app.allowed_languages') as $lang)
-            @if ($lang == App::getLocale())
+            @if ($lang == app()->getLocale())
                 @continue
             @endif
             <a href="{{ route(Route::current()->getName(), $lang) }}" class="nav__link">
