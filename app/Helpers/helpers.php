@@ -15,7 +15,7 @@ if (!function_exists('mobile')) {
 if (!function_exists('activeAddress')) {
     function activeAddress(): ?Address
     {
-        if (isset(request()->addressId)) {
+        if (!is_null(request()->addressId)) {
             return Address::where('user_id', Auth::user()->id)
                 ->where('id', request()->addressId)
                 ->first();
