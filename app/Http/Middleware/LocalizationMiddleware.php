@@ -17,7 +17,7 @@ class LocalizationMiddleware
         if (in_array($language, config('app.allowed_languages'))) {
             app()->setLocale($language);
         } else {
-            return redirect()->to(env('app.url') . '/' . app()->getLocale() . '/' . $params[4] ?? '/main');
+            return redirect()->to(env('app.url') . '/' . app()->getLocale() . '/' .($params[4]?? 'main'));
         }
         return $next($request);
     }
