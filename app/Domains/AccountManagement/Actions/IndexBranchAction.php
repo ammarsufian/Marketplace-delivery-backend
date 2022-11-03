@@ -34,7 +34,7 @@ class IndexBranchAction implements Actionable
                            sin( radians( latitude ) ) )
                          ) AS distance', [$this->address->latitude, $this->address->longitude, $this->address->latitude])
             ->havingRaw("distance < ?", [$this->zone])
-            ->distnict('brand_id')
+            ->distinct('brand_id')
             ->when($this->request->has('type'), function (Builder $query) {
                 return $query->where('type', $this->request->get('type'));
             })
