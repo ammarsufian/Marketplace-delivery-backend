@@ -16,7 +16,7 @@ class AppLocalizationMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $userLanguage = $request->headers('user-lang') ?? null;
+        $userLanguage = $request->header('user-lang') ?? null;
         if (in_array($userLanguage, config('app.allowed_languages')))
             app()->setLocale($userLanguage);
         else
