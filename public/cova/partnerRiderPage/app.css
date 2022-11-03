@@ -1,21 +1,17 @@
 /* *{
   font-family: 'Helvetica Neue',Helvetica,"Lucida Grande", Arial, sans-serif;
-    font-style: normal;
-    font-weight: 400;
+  font-style: normal;
 } */
 
 body{
     margin: 0;
     padding: 0;
-}
-.font-family{
-  font-family: 'Helvetica Neue',Helvetica,"Lucida Grande", Arial, sans-serif;
     font-style: normal;
-    font-weight: 400;
 }
 
 header{
     position: absolute;
+    z-index: 1000;
     display: flex;
     justify-content: flex-start;
     color: #fff;
@@ -48,7 +44,7 @@ a{
     font-size: 32px;
     display: flex;
     margin-left:31px ;
-
+    margin-right: 31px;
   }
   .logo-img {
     width: 126px;
@@ -63,138 +59,7 @@ a{
     color: #512345;
   }
 
-  /* MENU */
-
-  .nav-open .nav {
-    transform: translateX(0);
-  }
-
-  .nav {
-    width: 300px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: #d4944d;
-    transform: translateX(-300px);
-    transition: transform 0.2s;
-    overflow: hidden;
-    z-index: 11;
-  }
-
-  .nav-close {
-    background: none;
-    display: flex;
-    align-items: center;
-    border: none;
-    color: #fff;
-    margin-left: auto;
-  }
-
-  .close:hover {
-    background: rgba(255, 255, 255, 0.05);
-    cursor: pointer;
-
-  }
-  .close{
-    padding: 15px 25px;
-  }
-
-  .nav__link {
-    font-family: Helvetica,"Lucida Grande", Arial, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 10px 25px;
-    text-decoration: none;
-    color: #FFFFFF;
-  }
-
-  .nav__text {
-    font-size: 22px;
-    position: relative;
-    left: 10px;
-  }
-
-  .language-en-size {
-    font-size: 17px
-  }
-
-  .nav__link:hover {
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-
-
-
-  .menu li {
-    padding: 5px 14px;
-  }
-
-  /* DROPDOWN MENU */
-
-
-  input[type=checkbox] {
-    display: none;
-  }
-  input[type=checkbox]:checked~.nav{
-    transform: translateX(0);
-  }
-
-  /*HAMBURGER MENU*/
-  .hamburger {
-    display: block;
-    font-size: 40px;
-    user-select: none;
-    margin-bottom: 12px;
-    }
-    .margin-0{
-      margin: 0;
-    }
-  .menu_hamburger{
-    display: none;
-    width: 200px;
-    background-color: #d4944d;
-    height: 100vh;
-  }
-  .menu_hamburger a{
-    font-size: 22px;
-    width: inherit;
-    display: block;
-    height: inherit;
-  }
-  .nav__text {
-    font-size: 22px;
-    position: relative;
-    left: 10px;
-  }
-
-  .language-en-size {
-    font-size: 17px
-  }
-
-  .nav__link:hover {
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .menu_hamburger a:hover{
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .menu_hamburger li{
-    padding :0 25px;
-  }
-
-  .saltier{
-    font-size: 22px;
-    color: #fff;
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    width: 25px;
-    text-align: center;
-    padding-top: 5px;
-  }
+  
 
 
 /* contact section */
@@ -206,7 +71,7 @@ a{
   flex-direction: row;
   flex-wrap: nowrap;
   background-color: #d4944d;
-  width: 635px;
+  width: 35%;
   height: 876px;
   position: relative;
   z-index: 2;
@@ -217,13 +82,14 @@ a{
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-  margin-left: 119px;
+  margin-left: 10%;
   color: #fff;
-  height: 876px;
   width: 100%;
+  height: 653px;
+  margin-right: 10%;
 }
 .contact-title h1{
-  font-size: 58px;
+  font-size: 52px;
   font-weight: bold;
 }
 .contact-title div{
@@ -234,17 +100,15 @@ a{
   top: 233px;
   z-index: 2;
 }
-.contact-img img ,.contact-title{
-  height: 653px;
-  width: 635px;
-  object-fit: cover;
+.contact-img img{
+  width: 100%;
+  height: auto;
 }
 .position-relative{
   position: relative;
 }
 .contact-form > form > h1:first-of-type{
   margin-bottom: 32px;
-  font-family: 'Helvetica Neue',Helvetica,"Lucida Grande", Arial, sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 26px;
@@ -259,7 +123,7 @@ a{
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  width: 687px;
+  width: 60%;
   height: 876px;
   background-color: #fff;
   position: relative;
@@ -280,7 +144,6 @@ a{
   color: #C7C8CA;
 }
 .contact-form input[type='text'] ,.contact-form input[type='email'], .contact-form textarea{
-  font-family: 'Helvetica Neue',Helvetica,"Lucida Grande", Arial, sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
@@ -295,6 +158,7 @@ a{
 }
 .contact-form .group-name div:first-of-type{
   margin-right: 27px;
+  margin-left: 27px;
 }
 
 .contact-form .group-name input[type='text']{
@@ -335,15 +199,52 @@ a{
   overflow: hidden;
   max-inline-size: 5;
 }
-@media screen and (max-width: 1337px) {
+@media screen and (max-width: 1150px) {
   .contact-form{
     width: 100%;
   }
+  .contact-us{
+    flex-wrap: wrap;
+  }
+  .contact{
+    width: 100%;
+    height: unset;
+  }
+  .contact-img {
+    top: 25%;
+    width: 50%;
+    left: 50%;
+  }
 }
+@media screen and (max-width: 720px) {
+  .contact-img {
+    top: 0%;
+    width: inherit;
+    left: 0%;
+  }
+  .contact-title {
+    height: 500px;
+  }
+  .contact-form>form{
+    width: 85%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .contact-title {
+    height: 400px;
+  }
+  .contact-form>form{
+    width: 92%;
+  }
+  .contact-title {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
+
 /*the container must be positioned relative:*/
 .custom-select {
     position: relative;
-    font-family: 'Helvetica Neue';
   }
 
   .custom-select select {
@@ -361,7 +262,9 @@ a{
     position: absolute;
     content: "";
     top: 24px;
-    right: 10px;
+    /* right: 10px; */
+    right: var(--right, unset);
+    left: var(--left, unset);
     width: 0;
     height: 0;
     border: 6px solid transparent;
@@ -391,6 +294,8 @@ a{
     left: 0;
     right: 0;
     z-index: 99;
+    overflow: scroll;
+    height: 200px;
   }
 
   /*hide the items when the select box is closed:*/
@@ -422,7 +327,6 @@ a{
 }
 .form-header{
     margin: 36px;
-    font-family: 'Helvetica Neue';
     font-style: normal;
     font-weight: 700;
     font-size: 26px;
@@ -442,14 +346,14 @@ a{
 }
 .form-apply form div{
     width: 449px;
-    height: 54px;
+    /* height: 54px; */
 }
 .form-apply form .item{
 margin-bottom: 20px;
 }
 .form-apply form div input,
 .form-apply form div select{
-    height: inherit;
+    height: 54px;
     width: 100%;
 
 }
@@ -459,7 +363,6 @@ margin-bottom: 20px;
     border-radius: 4px;
     margin-right: 21px;
     padding-left: 10px;
-    font-family: 'Helvetica Neue';
     font-weight: 400;
     font-size: 16px;
     line-height: 22px;
@@ -470,7 +373,6 @@ margin-bottom: 20px;
     height: 54px;
 }
 .group-name input[type="text"]::placeholder {
-    font-family: 'Helvetica Neue';
     font-weight: 400;
     font-size: 16px;
     line-height: 22px;
@@ -480,7 +382,6 @@ margin-bottom: 20px;
 .form-apply input[type="submit"]{
     background: #E5AB6B;
     border-radius: 5px;
-    font-family: 'Helvetica Neue';
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -517,7 +418,6 @@ margin-bottom: 20px;
 }
 
 .wrapper-header {
-    font-family: 'Helvetica Neue',Helvetica, "MS Verdana", sans-serif;;
     font-style: normal;
     font-weight: 400;
     font-size: 38px;
@@ -552,7 +452,6 @@ margin-bottom: 20px;
     width: 275px;
     height: 88px;
     text-align: center;
-    font-family: 'Helvetica Neue',Helvetica, "MS Verdana", sans-serif;;
     font-style: normal;
     font-weight: 400;
     line-height: 26px;
@@ -586,13 +485,16 @@ margin-bottom: 20px;
     }
     .form-apply .group-name input[type="text"] {
         width: 95%;
+        margin-right:unset ;
     }
     .form-apply form div input, .form-apply form div select {
         width: 98%;
     }
 
     .select-selected:after {
-        right: 20px;
+        /* right: 20px; */
+        right: var(--right, unset);
+        left: var(--left, unset);
     }
     .wrapper-header h3{
         font-size: 30px;
@@ -687,7 +589,6 @@ footer {
 }
 
 .nav-footer ul {
-    font-family: Helvetica, sans-serif;
     list-style-type: none;
     display: flex;
     justify-content: center;
@@ -773,9 +674,3 @@ footer {
     line-height: 20px;
   }
 
-  .hide{
-    display:none;
-  }
-  .show{
-    display:block;
-  }
