@@ -10,13 +10,14 @@ class LocalizationMiddleware
 
     public function handle(Request $request, Closure $next)
     {
-        
+
         $params = explode('/', $request->fullUrl());
-        if (isset($params[3]) && in_array($params[3], config('app.allowed_languages'))) {
-            app()->setLocale($params[3]);
-        }
-        else {
-            return redirect()->to(env('app.url') . '/' . app()->getLocale());
+        $language = $params[3] ?? null;
+
+        if (in_array($language, config('app.allowed_languages'))) {
+            app()->setLocale($language);
+        } else {
+            return redirect()->to(env('app.url') . '/' . app()->getLocale() . '/' . $params[4] ?? '/main');
         }
         return $next($request);
     }

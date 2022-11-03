@@ -34,6 +34,7 @@ class IndexBranchAction implements Actionable
                            sin( radians( latitude ) ) )
                          ) AS distance', [$this->address->latitude, $this->address->longitude, $this->address->latitude])
             ->havingRaw("distance < ?", [$this->zone])
+            ->distnict('brand_id')
             ->when($this->request->has('type'), function (Builder $query) {
                 return $query->where('type', $this->request->get('type'));
             })
@@ -43,6 +44,6 @@ class IndexBranchAction implements Actionable
                 });
             })
             ->where('status', Branch::ACTIVE_STATUS_BRANCH)
-            ->paginate($this->request->get('per_page'));
+            ->paginate($this->request->get('per_page') ?? 10);
     }
 }

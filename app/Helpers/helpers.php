@@ -13,10 +13,15 @@ if (!function_exists('mobile')) {
 }
 
 if (!function_exists('activeAddress')) {
-    function activeAddress(): Address
+    function activeAddress(): ?Address
     {
-        return Address::where('user_id',Auth::user()->id)
-            ->where('id',request()->addressId)
+        if (isset(request()->addressId)) {
+            return Address::where('user_id', Auth::user()->id)
+                ->where('id', request()->addressId)
+                ->first();
+        }
+
+        return Address::where('user_id', Auth::user()->id)
             ->first();
     }
 }

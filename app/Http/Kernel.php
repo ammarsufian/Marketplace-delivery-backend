@@ -2,7 +2,10 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AppLocalizationMiddleware;
+use App\Http\Middleware\LocalizationMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Spatie\Permission\Middlewares\RoleOrPermissionMiddleware;
 
 class Kernel extends HttpKernel
 {
@@ -41,8 +44,9 @@ class Kernel extends HttpKernel
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            'throttle:api',
+            //'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            AppLocalizationMiddleware::class
         ],
     ];
 
@@ -65,7 +69,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
-        'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
-        'localization'=>\App\Http\Middleware\LocalizationMiddleware::class,
+        'role_or_permission' => RoleOrPermissionMiddleware::class,
+        'localization' => LocalizationMiddleware::class,
     ];
 }
