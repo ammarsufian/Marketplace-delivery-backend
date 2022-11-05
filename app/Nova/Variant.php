@@ -49,7 +49,7 @@ class Variant extends Resource
             ID::make('ID', 'id')->sortable(),
             Text::make('Name', 'name')->exceptOnForms(),
             Panel::make('Name', $this->getTranslationFields('name', $this->translations['name'])),
-            BelongsTo::make('Group','group',VariantGroup::class)->required()
+            BelongsTo::make('Group','group',VariantGroup::class)->searchable()->required()
         ];
     }
 

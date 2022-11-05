@@ -65,7 +65,7 @@ class EntityProductPolicy
      */
     public function delete(Admin $admin, EntityProduct $model)
     {
-        return false;
+        return $admin->hasRole('super-admin');
     }
 
     /**

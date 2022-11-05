@@ -25,17 +25,19 @@ class DeliveryPriceDiscountAction implements Actionable
 
     public function execute(): array
     {
-        $this->checkDeliveryFee();
+        $discounted = $this->checkDeliveryFee();
 
         return $this->calculate($this->cart, [
-            'delivery' => $this->deliveryFee,
-            'total' => $this->cart->items->sum('sub_total') + $this->deliveryFee,
+            'delivery' => $discounted,
+            'total' => $this->cart->items->sum('sub_total') + $discounted,
         ]);
     }
 
     protected function checkDeliveryFee()
     {
-        if ($this->deliveryFee > $this->promoCode->value)
-            $this->deliveryFee = $this->deliveryFee - $this->promoCode->value;
+        if ($this->deliveryFee >= $this->promoCode->value)
+            return $this->deliveryFee - $this->promoCode->value;
+
+        return 0;
     }
 }

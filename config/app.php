@@ -80,8 +80,8 @@ return [
     |
     */
 
-    'locale' => 'en',
-
+    'locale' => 'ar',
+    'allowed_languages' => env('allowed_languages', ['en', 'ar']),
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
@@ -175,6 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\NovaServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\TelescopeServiceProvider::class,
         \App\Providers\RuleServiceProvider::class,
 
         Spatie\Permission\PermissionServiceProvider::class,

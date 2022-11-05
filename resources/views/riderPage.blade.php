@@ -5,11 +5,11 @@
 {{asset('cova/partnerRiderPage/img/rider.png')}}
 @endsection
 @section('post')
-{{route('rider.store')}}
+{{route('rider.store', app()->getLocale())}}
 @endsection
 @section('content')
 <div class="wrapper-header">
-    <h3>Why Deliver with Cova</h3>
+    <h3>{{__('messages.rider.Why Deliver with Cova')}}</h3>
 </div>
 <div class="wrapper">
     <div class="card">
@@ -18,11 +18,10 @@
         </div>
         <div class="card-content">
             <h4>
-                Easy to use
+                {{__('messages.rider.title1')}}
             </h4>
             <p>
-                Just sign up and receive everything
-                you need to start earning.
+                {{__('messages.rider.paragraph1')}}
             </p>
         </div>
     </div>
@@ -32,11 +31,10 @@
         </div>
         <div class="card-content">
             <h4>
-                Make your own money
+                {{__('messages.rider.title2')}}
             </h4>
             <p>
-                You decide how much money you
-                make and when you make it.
+                {{__('messages.rider.paragraph2')}}
             </p>
         </div>
     </div>
@@ -46,11 +44,10 @@
         </div>
         <div class="card-content">
             <h4>
-                Set your own schedule
+                {{__('messages.rider.title3')}}
             </h4>
             <p>
-                Work with your own schedule. No
-                minimum hours and no boss.
+                {{__('messages.rider.paragraph3')}}
             </p>
         </div>
     </div>

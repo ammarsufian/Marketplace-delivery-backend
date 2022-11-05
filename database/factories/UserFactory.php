@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Domains\ApplicationManagement\Models\Country;
 use App\Domains\Authentication\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use function App\Helpers\mobile;
 
@@ -25,6 +26,7 @@ class UserFactory extends Factory
             'mobile_number' => '798135749',// mobile($this->faker->phoneNumber),
             'country_id' => Country::factory()->create()->id,
             'is_active' => true,
+            'password'=>Hash::make('123456'),
             'referral_key' => Str::random(10),
         ];
     }

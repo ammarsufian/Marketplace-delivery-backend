@@ -9,7 +9,7 @@ return [
     ],
     'cova' => [
         'prices'=>[
-            'fast_delivery_kilo_meter' => env('FAST_KILO_METER_PRICE',13)
+            'fast_delivery_kilo_meter' => env('FAST_KILO_METER_PRICE',17)
         ]
     ]
 ];

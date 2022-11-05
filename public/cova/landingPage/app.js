@@ -13,12 +13,14 @@ function editHeader() {
     if (mobileAndTabletCheck()) {
         document.getElementById("header").classList.remove("header-bg", "header");
         document.getElementById("header-left").classList.remove("header-left");
+        document.getElementById("header-left").classList.remove("header-right");
+        document.getElementById("header-right").classList.remove("header-left");
         document.getElementById("header-right").classList.remove("header-right");
     }
     else {
         document.getElementById("header").classList.add("header");
-        document.getElementById("header-left").classList.add("header-left");
-        document.getElementById("header-right").classList.add("header-right");
+        // document.getElementById("header-left").classList.add("header-left");
+        // document.getElementById("header-right").classList.add("header-right");
     }
 }
 window.mobileAndTabletCheck = function () {

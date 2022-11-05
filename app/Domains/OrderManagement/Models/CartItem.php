@@ -2,6 +2,7 @@
 
 namespace App\Domains\OrderManagement\Models;
 
+use App\Domains\ApplicationManagement\Models\Package;
 use App\Domains\AccountManagement\Models\Branch;
 use App\Domains\ProductManagement\Models\EntityProduct;
 use App\Domains\ProductManagement\Models\Variant;
@@ -22,6 +23,7 @@ class CartItem extends Model
 
     const BUYABLE_MODELS = [
         'EntityProduct' => EntityProduct::class,
+        'Package' => Package::class,
     ];
 
     protected $guarded = ['id'];

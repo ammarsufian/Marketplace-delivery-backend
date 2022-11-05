@@ -3,9 +3,11 @@
 namespace App\Domains\OrderManagement\Services;
 
 use App\Domains\AccountManagement\Models\Address;
+use App\Domains\AccountManagement\Rules\CheckBranchStatusRule;
 use App\Domains\Authentication\Rules\CheckIfUserIsActiveRule;
 use App\Domains\OrderManagement\Actions\CreateOrderAction;
 use App\Domains\OrderManagement\Actions\CreateOrderItemAction;
+use App\Domains\OrderManagement\Actions\DeleteCartWithItemsAction;
 use App\Domains\OrderManagement\Actions\GetOrderListAction;
 use App\Domains\OrderManagement\Http\Requests\PlaceOrderRequest;
 use App\Domains\OrderManagement\Http\Resources\OrderDetailsResource;
@@ -23,7 +25,6 @@ use App\Rules\Rules;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
-use App\Domains\AccountManagement\Rules\CheckBranchStatusRule;
 
 class ClientOrderService
 {
@@ -31,10 +32,10 @@ class ClientOrderService
     public function placeOrder(PlaceOrderRequest $request)
     {
         $promoCode = Auth::user()->cart->promoCode;
-        $branch = Auth::user()->cart->branch;
         $address = Address::find($request->get('addressId'));
         $paymentMethod = PaymentMethod::find($request->get('paymentMethodId'));
-
+        $cart = Auth::user()->cart;
+        $branch = Auth::user()->cart->branch;
         try {
             $ruleResults = Rules::apply([
                 (new CheckIfUserIsActiveRule()),
@@ -46,9 +47,10 @@ class ClientOrderService
                 (new CheckBranchStatusRule($branch)),
             ]);
 
-            $order = (new CreateOrderAction($request, $promoCode, $address))->execute();
+            $order = (new CreateOrderAction($request, $promoCode, $address, $cart))->execute();
             (new CreateOrderItemAction($order))->execute();
             (new CreateOrderTransactionAction($order, $paymentMethod, $request->get('credit_card_id')))->execute();
+            (new DeleteCartWithItemsAction($cart))->execute();
 
             if ($ruleResults->hasFailures())
                 $ruleResults->toException();

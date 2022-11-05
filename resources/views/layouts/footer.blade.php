@@ -29,11 +29,11 @@
         </div>
         <nav class="nav-footer">
             <ul>
-                <li><a href="#">Blog</a></li>
-                <li><a href="{{Route('contact')}}">Contact</a></li>
-                <li><a href="#">About us</a></li>
-                <li><a href="{{ Route('rider') }}"">Become a rider </a></li>
-                <li><a href=""{{ Route('partner') }}"">Become a partner</a></li>
+                <li><a href="#">{{__('messages.Blog')}}</a></li>
+                <li><a href="{{Route('contact',app()->getLocale())}}">{{__('messages.Contact')}}</a></li>
+                <li><a href="#">{{__('messages.About us')}}</a></li>
+                <li><a href="{{ Route('rider',app()->getLocale()) }}">{{__('messages.Become a rider')}} </a></li>
+                <li><a href="{{ Route('partner',app()->getLocale()) }}">{{__('messages.Become a partner')}}</a></li>
             </ul>
         </nav>
     </section>
@@ -43,7 +43,7 @@
             &copy; 2022 Cova
         </div>
         <div>
-            Terms & Conditions
+            {{__('messages.Terms & Conditions')}}
         </div>
     </section>
 </footer>

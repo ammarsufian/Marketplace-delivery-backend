@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Domains\AccountManagement\Models\Branch;
+use App\Domains\ApplicationManagement\Models\Package;
 use App\Domains\OrderManagement\Models\Cart;
 use App\Domains\OrderManagement\Models\CartItem;
 use App\Domains\ProductManagement\Models\EntityProduct;

@@ -2,6 +2,7 @@
 
 namespace App\Domains\OrderManagement\Actions;
 
+use App\Domains\ApplicationManagement\Models\Package;
 use App\Domains\Interfaces\Actionable;
 use App\Domains\OrderManagement\Http\Requests\AddItemToCartRequest;
 use App\Domains\OrderManagement\Models\Cart;
@@ -32,7 +33,7 @@ class AddItemToCartAction implements Actionable
         $item = $this->cart->Items()->updateOrCreate([
             'buyable_id' => $this->model->id,
             'buyable_type' => class_basename($this->model),
-            'branch_id' => $this->model->branch_id
+            'branch_id' => $this->cart->branch_id
         ], [
             'quantity' => $this->request->get('quantity'),
         ]);

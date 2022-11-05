@@ -5,6 +5,8 @@ namespace App\Domains\Authentication\Models;
 use App\Domains\AccountManagement\Models\Address;
 use App\Domains\AccountManagement\Models\Branch;
 use App\Domains\AccountManagement\Models\UserBranch;
+use App\Domains\ApplicationManagement\Models\Package;
+use App\Domains\ApplicationManagement\Models\UserPackage;
 use App\Domains\OrderManagement\Models\Cart;
 use App\Domains\OrderManagement\Models\Order;
 use App\Domains\ProductManagement\Models\Favorite;
@@ -77,6 +79,11 @@ class User extends Authenticatable
     public function branches(): BelongsToMany
     {
         return $this->belongsToMany(Branch::class, UserBranch::class, 'user_id', 'branch_id');
+    }
+
+    public function packages(): BelongsToMany
+    {
+        return $this->belongsToMany(Package::class, UserPackage::class, 'user_id', 'package_id');
     }
 
     public function setMobileNumberAttribute($value): void

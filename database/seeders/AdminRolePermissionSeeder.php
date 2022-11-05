@@ -37,7 +37,7 @@ class AdminRolePermissionSeeder extends Seeder
         'entity-product-additional-item',
         'entity-product-variants',
         'payment-method','transaction','order-cancel-reason',
-        'new-joiner','contact-us','user-branch'
+        'new-joiner','contact-us','user-branch','package'
     ];
 
 
@@ -80,17 +80,17 @@ class AdminRolePermissionSeeder extends Seeder
             'view-any-order-item', 'view-order-item',
             'view-any-order-item-variant', 'view-order-item-variant',
             'view-any-user', 'view-user', 'create-user', 'update-user',
-            'view-any-role','view-role' ,'create-role', 
-            'view-any-permission', 'view-permission', 
+            'view-any-role','view-role' ,'create-role',
+            'view-any-permission', 'view-permission',
             'view-any-admin','view-admin', 'create-admin', 'update-admin',
-            'view-any-credit-card-company', 'view-credit-card-company', 
+            'view-any-credit-card-company', 'view-credit-card-company',
             'create-credit-card-company', 'update-credit-card-company',
-            'view-any-entity-product-additional-item', 
+            'view-any-entity-product-additional-item',
             'view-entity-product-additional-item',
-            'create-entity-product-additional-item', 
+            'create-entity-product-additional-item',
             'update-entity-product-additional-item',
             'view-any-entity-product-variants',
-            'view-entity-product-variants', 
+            'view-entity-product-variants',
             'create-entity-product-variants',
             'update-entity-product-variants',
             'view-any-payment-method', 'view-payment-method',
@@ -119,6 +119,7 @@ class AdminRolePermissionSeeder extends Seeder
             'view-any-contact-us', 'view-contact-us',
             'view-any-order-cancel-reason', 'view-order-cancel-reason',
             'view-any-user-branch', 'view-user-branch','create-user-branch','update-user-branch',
+            'view-any-package', 'view-package', 'create-package', 'update-package',
         ];
 
         Role::where('name', 'super-admin')

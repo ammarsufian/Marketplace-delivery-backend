@@ -5,12 +5,12 @@
 {{asset('cova/partnerRiderPage/img/partner.png')}}
 @endsection
 @section('post')
-{{route('partner.store')}}
+{{route('partner.store', app()->getLocale())}}
 @endsection
 @section('content')
 <div class="wrapper-header">
     <h3>
-        How we can help your business
+        {{__('messages.partner.How we can help your business')}}
     </h3>
 </div>
 <div class="wrapper">
@@ -20,12 +20,10 @@
         </div>
         <div class="card-content">
             <h4>
-                Promote your business 
+                {{__('messages.partner.title1')}}
             </h4>
             <p>
-                Stand out with in-app marketing to 
-                reach even more customers and 
-                increase sales.
+                {{__('messages.partner.paragraph1')}}
             </p>
         </div>
     </div>
@@ -35,11 +33,10 @@
         </div>
         <div class="card-content">
             <h4>
-                Reach more customers
+                {{__('messages.partner.title2')}}
             </h4>
             <p>
-                Increase new customers attraction 
-                and boost your sales.
+                {{__('messages.partner.paragraph2')}}
             </p>
         </div>
     </div>
@@ -49,12 +46,10 @@
         </div>
         <div class="card-content">
             <h4>
-                We take care of delievery
+                {{__('messages.partner.title3')}}
             </h4>
             <p>
-                Get more sales on delivery orders 
-                without any of the delivery 
-                headaches.
+                {{__('messages.partner.paragraph3')}}
             </p>
         </div>
     </div>

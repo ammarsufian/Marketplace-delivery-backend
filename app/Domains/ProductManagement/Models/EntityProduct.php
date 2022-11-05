@@ -15,12 +15,16 @@ class EntityProduct extends Model
 {
     use HasFactory;
 
-    protected $guarded=[];
+    protected $guarded = [];
     const ENTITY_PRODUCT_STATUS = [
         'active',
         'in-active'
     ];
     const ACTIVE_STATUS = 'active';
+
+    protected $with = ['product']; //Eager Loading
+
+    protected $appends = ['name', 'image']; //inject this keys in-side entityProduct object
 
     protected static function newFactory(): EntityProductFactory
     {
@@ -63,4 +67,15 @@ class EntityProduct extends Model
     {
         return $query->where('branch_id', $branchId);
     }
+
+    public function getNameAttribute()
+    {
+        return $this->product->name;
+    }
+
+    public function getImageAttribute()
+    {
+        return $this->product->image;
+    }
+
 }
