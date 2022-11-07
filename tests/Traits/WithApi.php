@@ -223,4 +223,8 @@ trait WithApi
     {
         return $this->getApi("/packages");
     }
+
+    public function getUserInvitationLink(){
+        return $this->getApi("/user/invitation-link");
+    }
 }

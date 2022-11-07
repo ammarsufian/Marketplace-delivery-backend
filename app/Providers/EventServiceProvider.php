@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Observers\OrderObserver;
+use App\Domains\OrderManagement\Models\Order;
 use App\Domains\ApplicationManagement\Events\SendClientAppNotification;
 use App\Domains\ApplicationManagement\Listeners\SendClientAppNotificationListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -26,6 +28,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Order::observe(OrderObserver::class);
     }
 }

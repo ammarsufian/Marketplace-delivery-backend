@@ -19,7 +19,7 @@ class InvitedUserRequest extends FormRequest
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'mobile_number' => ['required', 'string',new ValidateUniqueMobileNumberRule()],
+            'mobile_number' => ['required', 'string','regex:/^([0-9\s\-\+\(\)]*)$/',new ValidateUniqueMobileNumberRule()],
             'referral_key' => ['required', 'exists:users,referral_key'],
         ];
     }

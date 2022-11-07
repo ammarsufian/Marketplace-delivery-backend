@@ -44,7 +44,7 @@
 }
 .nav-right{
     right: 0;
-    transform: translateX(300px);
+    transform: translateX(350px);
 }
 .nav-close {
     background: none;

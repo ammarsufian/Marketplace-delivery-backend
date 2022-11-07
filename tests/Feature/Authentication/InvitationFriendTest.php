@@ -30,14 +30,18 @@ class InvitationFriendTest extends FlowTestCase
     /** @test */
     public function it_should_show_link_if_user_has_referral_key()
     {
-        $this->get('/user/' . $this->user->referral_key . '/accept-invitation')
-            ->assertOk();
+        $this->get(route('users.invitation', [
+            'lang' => app()->getLocale(), 
+            'referral_key' => $this->user->referral_key
+            ]))->assertOk();
     }
 
     /** @test */
     public function it_cant_show_link_if_user_hasnt_referral_key()
     {
-        $this->get('/user/' . '123' . '/accept-invitation')
-            ->assertNotFound();
+        $this->get(route('users.invitation', [
+            'lang' => app()->getLocale(), 
+            'referral_key' => '123456789'
+            ]))->assertNotFound();
     }
 }

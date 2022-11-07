@@ -18,7 +18,7 @@ class InvitedUserController extends Controller
     public function check($referral_key, InvitedUserRequest $request, SmsService $smsService)
     {
         // limit the request to 5 times
-        return $smsService->sendOTP($request->get('mobile_number'));
+        //return $smsService->sendOTP($request->get('mobile_number'));
     }
 
     public function create($referral_key, InvitedUserRequest $request, InvitationFriendService $invitationFriendService)
@@ -28,7 +28,7 @@ class InvitedUserController extends Controller
     }
 
 
-    public function show($referral_key, InvitationFriendService $invitationFriendService)
+    public function show($lang,$referral_key, InvitationFriendService $invitationFriendService)
     {
         if ($invitationFriendService->CheckInvitationLink($referral_key))
             return view('InvitationPage', compact('referral_key'));

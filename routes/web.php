@@ -20,24 +20,8 @@ Route::middleware('localization')->group(function () {
     Route::post('{lang}/rider', NewJoinerController::class)->name('rider.store');
     Route::post('{lang}/partner', NewJoinerController::class)->name('partner.store');
     Route::post('{lang}/contact', CreateContactUsController::class)->name('contact.store');
+    Route::get('{lang}/user/{referral_key}/accept-invitation', [InvitedUserController::class,'show'])->name('users.invitation');
 });
-
-Route::get('/', LandingPageController::class)->name('landing-page');
-Route::get('/rider', RiderController::class)->name('rider');
-Route::get('/partner', PartnerController::class)->name('partner');
-Route::post('/rider', NewJoinerController::class)->name('rider.store');
-Route::post('/partner', NewJoinerController::class)->name('partner.store');
-Route::get('/contact', indexContactUsController::class)->name('contact');
-Route::post('/contact', CreateContactUsController::class)->name('contact.store');
-
-
-Route::get('/user/{referral_key}/accept-invitation', [InvitedUserController::class,'show'])->name('users.invitation');
-
-Route::post('/user/{referral_key}/check-data', [InvitedUserController::class,'check'])->name('users.checked');
-Route::post('/user/{referral_key}/register', [InvitedUserController::class,'create'])->name('users.created');
-
-
-Route::get('/user/{referral_key}/accept-invitation', [InvitedUserController::class,'show'])->name('users.invitation');
 
 Route::post('/user/{referral_key}/check-data', [InvitedUserController::class,'check'])->name('users.checked');
 Route::post('/user/{referral_key}/register', [InvitedUserController::class,'create'])->name('users.created');

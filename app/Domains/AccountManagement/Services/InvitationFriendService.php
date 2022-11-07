@@ -2,15 +2,18 @@
 
 namespace App\Domains\AccountManagement\Services;
 
-use App\Domains\AccountManagement\Actions\CheckInvitationLinkAction;
-use App\Domains\AccountManagement\Rules\CheckInvitedFriendsOtpRule;
-use App\Domains\Authentication\Rules\CheckIfUserIsActiveRule;
-use App\Rules\Rules;
 use Exception;
+use App\Rules\Rules;
 use Illuminate\Http\Request;
+use App\Domains\Transaction\Models\UserTransaction;
+use App\Domains\AccountManagement\Services\SmsService;
+use App\Domains\Transaction\Actions\CreatePointsAction;
+use App\Domains\Authentication\Rules\CheckIfUserIsActiveRule;
 use App\Domains\AccountManagement\Actions\CreateInvitedUserAction;
 use App\Domains\AccountManagement\Actions\GetInvitationLinkAction;
 use App\Domains\AccountManagement\Http\Requests\InvitedUserRequest;
+use App\Domains\AccountManagement\Rules\CheckInvitedFriendsOtpRule;
+use App\Domains\AccountManagement\Actions\CheckInvitationLinkAction;
 
 class InvitationFriendService
 {
@@ -60,7 +63,8 @@ class InvitationFriendService
                 $ruleResults->toException();
             }
 
-            (new CreateInvitedUserAction($request))->execute();
+            $user=(new CreateInvitedUserAction($request))->execute();
+            (new CreatePointsAction($user,UserTransaction::POINTS_STATUS_PENDING,UserTransaction::POINTS_REASON))->execute();
 
         } catch (\Exception $exception) {
             return response()->json([
@@ -70,7 +74,7 @@ class InvitationFriendService
         }
 
         return response()->json([
-            'message' => 'Account Created',  //TODO::make this message Translated
+            'message' => __('auth.registered_successfully'),
             'success' => true
         ]);
     }

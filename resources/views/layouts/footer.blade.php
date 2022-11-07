@@ -27,7 +27,7 @@
                 </a>
             </div>
         </div>
-        <nav class="nav-footer">
+        <nav class="nav-footer" dir="auto">
             <ul>
                 <li><a href="#">{{__('messages.Blog')}}</a></li>
                 <li><a href="{{Route('contact',app()->getLocale())}}">{{__('messages.Contact')}}</a></li>

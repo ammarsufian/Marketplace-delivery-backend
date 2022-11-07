@@ -20,7 +20,7 @@ class GetInvitationLinkAction implements Actionable
 
     public function execute()
     {
-        $link = route('users.invitation', ['referral_key' => $this->user->referral_key]);
+        $link = route('users.invitation', ['lang' => app()->getLocale(), 'referral_key' => $this->user->referral_key]);
         return $link;
     }
 }

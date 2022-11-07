@@ -7,6 +7,7 @@ use App\Domains\OrderManagement\Models\Order;
 use App\Domains\AccountManagement\Models\UserBranch;
 use App\Domains\AccountManagement\Models\Branch;
 use App\Domains\OrderManagement\Models\OrderCancelReason;
+use App\Domains\Transaction\Models\UserTransaction;
 use Carbon\Carbon;
 use Tests\FlowTestCase;
 
@@ -88,4 +89,21 @@ class OrderStatusProviderTest extends FlowTestCase
             ])->assertStatus(422);
     }
 
+    /** @test */
+    public function it_can_set_order_status_delivered()
+    {
+        $sender = User::factory()->create();
+        $userTransaction =UserTransaction::factory()->create();
+        $this->order = Order::factory()->create([
+            'branch_id' => $this->branch->id, 
+            'user_id' => $userTransaction->user->id
+        ]);
+        $this->order->user->invitation_sender_id = $sender->id;
+        $this->order->user->save();
+
+        $this->actingAs($this->user)
+            ->updateOrderStatusProvider($this->order, [
+                'status' => Order::DELIVERED_ORDER_STATUS
+            ])->assertOk();
+    }
 }

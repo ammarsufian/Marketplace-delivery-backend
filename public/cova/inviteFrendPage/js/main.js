@@ -49,11 +49,10 @@ $(function () {
                                     document.getElementById("timer").innerHTML = "EXPIRED";
                                 }
                             }, 1000);
-
+                            
                             let timer = setTimeout(function () {
                                 location.reload();
                             }, 120000);
-
                             tmp = data;
                         },
                         'error': function (data) {
@@ -62,9 +61,18 @@ $(function () {
                             result=arr.filter(function (item) {
                                 if (error.indexOf(item) === -1) {
                                     document.getElementById(item).classList.remove('error-field');
+                                    document.getElementById(item+'_error').innerHTML = '';
                                     return false;
                                 }
                                 document.getElementById(item).classList.add('error-field');
+                                if (document.getElementById(item+'_error')==undefined) {
+                                    $('#'+item).after('<div class="error-message" id="'+item+'_error">'+data.responseJSON.errors[item]+'</div>');
+                                }
+                                
+                                else if(document.getElementById(item+'_error'))
+                                {
+                                    document.getElementById(item+'_error').innerHTML = data.responseJSON.errors[item];
+                                }
                                 return true;
                             });
                             tmp = data;
@@ -88,7 +96,7 @@ $(function () {
                 for (let i = 0; i < data.length; i++) {
                     formData.append(data[i].name, data[i].value);
                 }
-                console.log(formData.get('_token'));
+                //console.log(formData.get('_token'));
 
                 var return_first = function () {
                     var tmp = null;
@@ -164,7 +172,7 @@ $(function () {
         btn.href = "#";
         btn.focus();
         btn.onclick = function () {
-             location.reload();
+            location.reload();
             removeCustomAlert();
             return false;
         }

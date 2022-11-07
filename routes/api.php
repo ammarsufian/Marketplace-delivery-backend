@@ -33,7 +33,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/profile', [EditProfileController::class, 'update']);
         Route::resource('/credit-card', CreditCardController::class);
         Route::post('/deactivate', DeactivateUserController::class);
-        Route::middleware('auth:sanctum')->get('/invitation-link', [InvitedUserController::class,'index']);
+        Route::get('/invitation-link', [InvitedUserController::class,'index']);
     });
     Route::prefix('categories')->group(function () {
         Route::get('/', [CategoryController::class, 'index']);

@@ -16,7 +16,10 @@ class UserTransaction extends Model
 
     protected $table = 'user_transactions';
     protected $guarded=['id'];
-
+    const POINTS_AMOUNT = 10;
+    const POINTS_REASON = 'Points for inviting a friend';
+    const POINTS_STATUS_PENDING = 'pending';
+    const POINTS_STATUS_ACCEPTED = 'accepted';
     protected static function newFactory():UserTransactionFactory
     {
         return UserTransactionFactory::new();

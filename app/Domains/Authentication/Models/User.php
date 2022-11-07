@@ -23,6 +23,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use function App\Helpers\mobile;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable
 {
@@ -85,7 +86,22 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Package::class, UserPackage::class, 'user_id', 'package_id');
     }
+    
+    public function usersInvited(): HasMany
+    {
+        return $this->hasMany(User::class, 'invitation_sender_id');
+    }
 
+    public function sender(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'invitation_sender_id');
+    }
+
+    public function userTransactions(): HasMany
+    {
+        return $this->hasMany(UserTransaction::class);
+    }
+    
     public function setMobileNumberAttribute($value): void
     {
         $this->attributes['mobile_number'] = mobile($value);
