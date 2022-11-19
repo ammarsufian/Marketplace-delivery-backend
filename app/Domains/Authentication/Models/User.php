@@ -106,4 +106,9 @@ class User extends Authenticatable
     {
         return $query->where('referral_key', $referral_key);
     }
+
+    public function scopeOfEmail(Builder $query, string $email): Builder
+    {
+        return $query->where('email', $email);
+    }
 }
