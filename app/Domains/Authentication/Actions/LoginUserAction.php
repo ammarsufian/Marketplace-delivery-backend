@@ -26,6 +26,5 @@ class LoginUserAction implements Actionable
             return $query->where('name', $this->role_name);
         })->where('mobile_number', mobile($this->request->get('mobile_number')))
             ->firstOrFail();
-
     }
 }

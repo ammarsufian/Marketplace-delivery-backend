@@ -23,12 +23,14 @@ class Order extends Model
     const PENDING_ORDER_STATUS = 'pending';
     const PREPARING_ORDER_STATUS = 'preparing';
     const REJECT_ORDER_STATUS = 'reject';
+    const DELIVERED_ORDER_STATUS = 'delivered';
 
     const Order_STATUS =[
         'pending' => 'Pending',
         'preparing' => 'Preparing',
         'ready' => 'Ready',
         'reject', 'Rejected',
+        'delivered' => 'Delivered'
     ];
 
     const MAPPING_ORDER_STATUS = [

@@ -13,6 +13,7 @@ use App\Domains\ProductManagement\Models\Favorite;
 use App\Domains\Transaction\Models\CreditCard;
 use App\Domains\Transaction\Models\UserTransaction;
 use Database\Factories\UserFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -22,6 +23,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use function App\Helpers\mobile;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable
 {
@@ -31,6 +33,14 @@ class User extends Authenticatable
     const APPLICATION_ROLE = 'application';
 
     protected $guarded = [];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::created(function (User $user) {
+            $user->update(['referral_key' => mt_rand(1111111, 9999999)]);
+        });
+    }
 
     protected static function newFactory(): UserFactory
     {
@@ -77,8 +87,28 @@ class User extends Authenticatable
         return $this->belongsToMany(Package::class, UserPackage::class, 'user_id', 'package_id');
     }
 
+    public function usersInvited(): HasMany
+    {
+        return $this->hasMany(User::class, 'invitation_sender_id');
+    }
+
+    public function userTransactions(): HasMany
+    {
+        return $this->hasMany(UserTransaction::class);
+    }
+
     public function setMobileNumberAttribute($value): void
     {
         $this->attributes['mobile_number'] = mobile($value);
+    }
+
+    public function scopeOfReferralKey(Builder $query, $referral_key): Builder
+    {
+        return $query->where('referral_key', $referral_key);
+    }
+
+    public function scopeOfEmail(Builder $query, string $email): Builder
+    {
+        return $query->where('email', $email);
     }
 }

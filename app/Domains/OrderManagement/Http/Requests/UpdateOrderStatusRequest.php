@@ -31,6 +31,7 @@ class UpdateOrderStatusRequest extends FormRequest
                 Rule::in([
                     Order::REJECT_ORDER_STATUS,
                     Order::PREPARING_ORDER_STATUS,
+                    Order::DELIVERED_ORDER_STATUS,
                 ]),
             ],
             'preparation_time' => ['required_if:status,==,'.Order::PREPARING_ORDER_STATUS,'integer', 'min:0'],

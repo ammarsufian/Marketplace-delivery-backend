@@ -4,6 +4,7 @@ namespace App\Domains\OrderManagement\Services;
 
 use App\Domains\AccountManagement\Models\Branch;
 use App\Domains\ApplicationManagement\Models\Package;
+use App\Domains\Authentication\Rules\CheckGuestRule;
 use App\Domains\Authentication\Rules\CheckIfUserIsActiveRule;
 use App\Domains\OrderManagement\Actions\AddItemToCartAction;
 use App\Domains\OrderManagement\Actions\DeleteCartItemByIdAction;
@@ -12,6 +13,7 @@ use App\Domains\OrderManagement\Actions\GetUserCartAction;
 use App\Domains\OrderManagement\Http\Requests\AddItemToCartRequest;
 use App\Domains\OrderManagement\Http\Resources\CartResource;
 use App\Domains\OrderManagement\Models\CartItem;
+use App\Domains\OrderManagement\Models\CartItemVariant;
 use App\Domains\OrderManagement\Rules\CheckCartItemBelongsToUserRule;
 use App\Exceptions\RuleResultException;
 use App\Rules\Rules;
@@ -24,7 +26,9 @@ class CartService
     public function addItemToCart(AddItemToCartRequest $request)
     {
         try {
+            $user = Auth::user();
             $ruleResults = Rules::apply([
+                (new CheckGuestRule($user)),
                 (new CheckIfUserIsActiveRule()),
             ]);
 
@@ -32,6 +36,7 @@ class CartService
                 $ruleResults->toException();
 
             $model = (new GetModelByIdAction($request->get('buyable_type'), $request->get('buyable_id')))->execute();
+            $this->clearCart($model);
             if ($model instanceof Package) {
                 $model->branch = Branch::first();
             }
@@ -90,5 +95,18 @@ class CartService
         return response()->json([
             'data' => CartResource::make($cartItem->cart->refresh())
         ]);
+    }
+
+    private function clearCart($model)
+    {
+        if (Auth::user()->cart->branch_id != $model->branch_id) {
+            $cartItems = $this->cart->items->pluk('id');
+            if ($cartItems)
+                CartItemVariant::whereIn('cart_item_id', $cartItems)->delete();
+            $this->cart->items->delete();
+            $this->cart->delete();
+        }
+
+        return true;
     }
 }

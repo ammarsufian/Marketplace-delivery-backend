@@ -10,7 +10,6 @@ use App\Domains\AccountManagement\Traits\MergeScheduleTimeTrait;
 class ProviderBranchTest extends FlowTestCase
 {
     use MergeScheduleTimeTrait;
-
     public User $user;
     public Branch $branch;
 

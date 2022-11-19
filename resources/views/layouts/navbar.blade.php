@@ -18,7 +18,11 @@
             @if ($lang == app()->getLocale())
                 @continue
             @endif
-            <a href="{{ route(Route::current()->getName(), $lang) }}" class="nav__link">
+            @php
+            $request = request()->route()->parameters;
+            $request['lang']=$lang;
+            @endphp
+            <a href="{{ route(Route::current()->getName(), $request) }}" class="nav__link">
                 <i class="material-symbols-outlined nav__icon">language</i>
                 <span class="nav__text">{{ __("messages.$lang") }}</span>
             </a>                        

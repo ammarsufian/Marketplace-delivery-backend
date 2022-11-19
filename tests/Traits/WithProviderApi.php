@@ -75,7 +75,7 @@ trait WithProviderApi
 
     public function getOrderListProvider($per_page = 10, $date = ''): TestResponse
     {
-        return $this->getProvider('/orders?per_page=' . $per_page . '&date=' . $date);
+        return $this->getProvider('/orders?per_page=' . $per_page.'&date='.$date);
     }
 
     public function updateOrderStatusProvider(Order $order, array $attributes = []): TestResponse

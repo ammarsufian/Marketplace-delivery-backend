@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class DeactivateUserController extends Controller
 {
-    public function __invoke(Request $request,AuthenticationService $authenticationService)
+    public function __invoke(Request $request, AuthenticationService $authenticationService)
     {
         return $authenticationService->deactivateUser($request);
     }

@@ -15,20 +15,33 @@ class UserTransaction extends Model
     use HasFactory;
 
     protected $table = 'user_transactions';
-    protected $guarded=['id'];
+    protected $guarded = ['id'];
 
-    protected static function newFactory():UserTransactionFactory
+    const POINTS_AMOUNT = 10;
+    const POINTS_REASON = 'Points for inviting a friend';
+
+    const POINTS_STATUS_PENDING = 'pending';
+    const POINTS_STATUS_ACCEPTED = 'accepted';
+    const POINTS_STATUS_WAITING_FOR_ORDER = 'waiting-for-order';
+
+
+    protected static function newFactory(): UserTransactionFactory
     {
         return UserTransactionFactory::new();
     }
 
-    public function user():BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function scopeOfUser(Builder $query):Builder
+    public function sender(): BelongsTo
     {
-        return $query->where('user_id',Auth::user()->id);
+        return $this->belongsTo(User::class, 'invitation_sender_id');
+    }
+
+    public function scopeOfUser(Builder $query): Builder
+    {
+        return $query->where('user_id', Auth::user()->id);
     }
 }

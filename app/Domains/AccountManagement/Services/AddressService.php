@@ -81,7 +81,8 @@ class AddressService
 
     public function UserAddressesList()
     {
-        $addresses = Auth::user()->addresses;
+        //business requirement to display only 4 addresses
+        $addresses = Auth::user()->addresses()->limit(4)->get();
         return UserAddressResource::collection($addresses);
     }
 }

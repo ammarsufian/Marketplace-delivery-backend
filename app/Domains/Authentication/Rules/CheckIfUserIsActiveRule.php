@@ -24,4 +24,9 @@ class CheckIfUserIsActiveRule implements Rulable
     {
         return 'User Account is not active';
     }
+
+    public function getCode(): int
+    {
+        return 401;
+    }
 }

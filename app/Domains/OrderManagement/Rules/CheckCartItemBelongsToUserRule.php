@@ -22,6 +22,6 @@ class CheckCartItemBelongsToUserRule implements Rulable
 
     public function getMessage(): string
     {
-        return 'Invalid Cart Item id'; //TODO::to be translatable by data team
+        return 'Invalid Cart Item id';
     }
 }

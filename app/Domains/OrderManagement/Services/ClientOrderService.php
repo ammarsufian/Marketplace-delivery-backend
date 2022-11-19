@@ -3,11 +3,14 @@
 namespace App\Domains\OrderManagement\Services;
 
 use App\Domains\AccountManagement\Models\Address;
+use App\Domains\AccountManagement\Rules\CheckBranchStatusRule;
+use App\Domains\Authentication\Rules\CheckGuestRule;
 use App\Domains\Authentication\Rules\CheckIfUserIsActiveRule;
 use App\Domains\OrderManagement\Actions\CreateOrderAction;
 use App\Domains\OrderManagement\Actions\CreateOrderItemAction;
 use App\Domains\OrderManagement\Actions\DeleteCartWithItemsAction;
 use App\Domains\OrderManagement\Actions\GetOrderListAction;
+use App\Domains\OrderManagement\Actions\UpdateRemainingCountForPromoCode;
 use App\Domains\OrderManagement\Http\Requests\PlaceOrderRequest;
 use App\Domains\OrderManagement\Http\Resources\OrderDetailsResource;
 use App\Domains\OrderManagement\Http\Resources\ClientOrderResource;
@@ -24,7 +27,6 @@ use App\Rules\Rules;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
-use App\Domains\ApplicationManagement\Models\Package;
 
 class ClientOrderService
 {
@@ -34,21 +36,27 @@ class ClientOrderService
         $promoCode = Auth::user()->cart->promoCode;
         $address = Address::find($request->get('addressId'));
         $paymentMethod = PaymentMethod::find($request->get('paymentMethodId'));
-        $cart = Auth::user()->cart;
+        $user = Auth::user();
+        $cart = $user->cart;
+        $branch = $cart->branch;
+
         try {
             $ruleResults = Rules::apply([
+                (new CheckGuestRule($user)),
                 (new CheckIfUserIsActiveRule()),
                 (new CheckPromoCodeValidityRule($promoCode)),
                 (new CheckCartItemsCountRule()),
                 (new CheckRemainingPromoCodeCounterRule($promoCode)),
                 (new CheckAddressBelongsToUserRule($address)),
                 (new CheckPaymentMethodStatusRule($paymentMethod)),
+                (new CheckBranchStatusRule($branch)),
             ]);
 
             $order = (new CreateOrderAction($request, $promoCode, $address, $cart))->execute();
             (new CreateOrderItemAction($order))->execute();
             (new CreateOrderTransactionAction($order, $paymentMethod, $request->get('credit_card_id')))->execute();
             (new DeleteCartWithItemsAction($cart))->execute();
+            (new UpdateRemainingCountForPromoCode($promoCode))->execute();
 
             if ($ruleResults->hasFailures())
                 $ruleResults->toException();

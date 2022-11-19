@@ -25,7 +25,7 @@ class RulesBus
             $ruleResult->setResult($rule->run());
             if ($ruleResult->hasFailed()) {
                 $ruleResult->setMessage($rule->getMessage());
-                $ruleResult->setStatusCode(400);
+                $ruleResult->setStatusCode($rule->getCode() ?? 400);
             }
             $this->results->push($ruleResult);
         });

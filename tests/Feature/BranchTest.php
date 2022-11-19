@@ -20,7 +20,7 @@ class BranchTest extends FlowTestCase
         parent::setUp();
         $this->branches = Branch::factory()->count(10)->create();
         $this->user = User::factory()->create();
-        $this->address = Address::factory()->ofLocation($this->branches->first()->latitude,$this->branches->first()->longitude)->ofUser($this->user)->create();
+        $this->address = Address::factory()->ofLocation($this->branches->first()->latitude, $this->branches->first()->longitude)->ofUser($this->user)->create();
     }
 
     /** @test */
@@ -93,5 +93,18 @@ class BranchTest extends FlowTestCase
             'category_id' => "$category->id",
         ])->assertOk()
             ->assertJsonCount(1, 'data');
+    }
+
+    /** @test */
+    public function it_cant_show_branches_if_status_is_not_active()
+    {
+        $branch = $this->branches->first();
+        $branch->update(['status' => 0]);
+
+        $this->actingAs($this->user)->GetNearerLocations([
+            'addressId' => $this->address->id,
+            'type' => $branch->type,
+        ])->assertOk()
+            ->assertJsonCount(0, 'data');
     }
 }

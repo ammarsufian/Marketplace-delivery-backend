@@ -73,7 +73,7 @@
                         {{__('messages.Order your cofee,and we will get it delivere to you!')}}
                     </p>
                 </div>
-    
+
                 <div class="card-footer flex flex-start donload-now-more">
                     <button class="btn-color-o radius-5">{{__('messages.Donwload now')}}</button>
                     <button class="btn-color-w radius-5">{{__('messages.Learn More')}}</button>
@@ -116,15 +116,15 @@
         <div class="categores-list">
             @foreach ($categories as $category)
                 <div class="category-item {{$loop->iteration}} padding-category-left">
-                    <div class="category_image"> <img src="{{$category->image}}" /> </div>
+                    <div class="category_image"> <img src="{{$category->image??null}}" /> </div>
                     <div class="category_title title-black">
-                        <p>{{$category->name}}</p>
+                        <p>{{$category->name??'null'}}</p>
                     </div>
                 </div>
             @endforeach
         </div>
     </section>
-    
+
     <section class="track-order flex-direction-row-reverse flex-align-center">
         <div class="track-order-item-1">
             <h1 class="card-header">
@@ -196,7 +196,7 @@
         </div>
     </section>
     @extends('layouts.footer')
-    
+
     <script src="{{asset("cova/landingPage/app.js")}}"></script>
 </body>
 
