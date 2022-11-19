@@ -29,7 +29,7 @@ class InvitationFriendService
         }
 
         return response()->json([
-            'message' => 'Link Generated', //TODO::make this message Translated
+            'message' => 'Link Generated',
             'data' => [$result],
             'success' => true
         ]);
@@ -59,12 +59,12 @@ class InvitationFriendService
             $ruleResults = Rules::apply([
                 (new CheckInvitedFriendsOtpRule($request->get("mobile_number"), $request->get("otp"))),
             ]);
+
             if ($ruleResults->hasFailures()) {
                 $ruleResults->toException();
             }
 
-            $user=(new CreateInvitedUserAction($request))->execute();
-            (new CreatePointsAction($user,UserTransaction::POINTS_STATUS_PENDING,UserTransaction::POINTS_REASON))->execute();
+            (new CreateInvitedUserAction($request))->execute();
 
         } catch (\Exception $exception) {
             return response()->json([

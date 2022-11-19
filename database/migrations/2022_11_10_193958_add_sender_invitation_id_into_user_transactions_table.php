@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddInvitationSenderIdToUsersTable extends Migration
+class AddSenderInvitationIdIntoUserTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class AddInvitationSenderIdToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('user_transactions',function (Blueprint $table){
             $table->unsignedInteger('invitation_sender_id')->nullable();
-            $table->foreign('invitation_sender_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('invitation_sender_id')->references('id')
+                ->on('users')->onDelete('cascade');
         });
     }
 
@@ -26,7 +27,8 @@ class AddInvitationSenderIdToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('user_transactions',function (Blueprint $table){
+            $table->dropForeign('invitation_sender_id');
             $table->dropColumn('invitation_sender_id');
         });
     }

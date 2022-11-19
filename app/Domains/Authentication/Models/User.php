@@ -86,22 +86,17 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Package::class, UserPackage::class, 'user_id', 'package_id');
     }
-    
+
     public function usersInvited(): HasMany
     {
         return $this->hasMany(User::class, 'invitation_sender_id');
-    }
-
-    public function sender(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'invitation_sender_id');
     }
 
     public function userTransactions(): HasMany
     {
         return $this->hasMany(UserTransaction::class);
     }
-    
+
     public function setMobileNumberAttribute($value): void
     {
         $this->attributes['mobile_number'] = mobile($value);

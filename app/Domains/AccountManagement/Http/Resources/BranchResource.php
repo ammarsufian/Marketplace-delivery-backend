@@ -18,7 +18,9 @@ class BranchResource extends JsonResource
         $schedule = $this->today_schedule;
         $open_dateTime = Carbon::parse(data_get($schedule, 'open_datetime'));
         $close_dateTime = Carbon::parse(data_get($schedule, 'close_datetime'));
-        $delivery_data = $this->delivery_data;
+        $distance = (int)$this->distance;
+        $delivery_cost = round($distance * config('shipment.cova.prices.fast_delivery_kilo_meter'), 3);
+
         return [
             'id' => $this->id,
             'latitude' => $this->latitude,
@@ -27,9 +29,9 @@ class BranchResource extends JsonResource
             'close_hour' => $close_dateTime->format('h:i A'),
             'brand' => new BrandResource($this->brand),
             'is_closed' => $this->checkIfBranchIsClosed($schedule),
-            'distance' => (int)$this->distance,
-            'delivery_time' => data_get($delivery_data,'duration') ?? $this->delivery_time,
-            'delivery_fee' => data_get($delivery_data,'distance'),
+            'distance' => $distance,
+            'delivery_time' => $this->delivery_time,
+            'delivery_fee' => $delivery_cost,
             'rating' => 5,//TODO:: To be calculate this from orders
             'contact_cafe' => [
                 'mobile_number' => data_get($this->contact_us, 'mobile_number'),

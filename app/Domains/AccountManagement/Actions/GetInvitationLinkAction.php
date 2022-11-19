@@ -10,7 +10,6 @@ use App\Domains\Authentication\Models\User;
 
 class GetInvitationLinkAction implements Actionable
 {
-
     protected User $user;
 
     public function __construct()

@@ -17,7 +17,6 @@ use App\Domains\AccountManagement\Http\Controllers\EditProfileController;
 use App\Domains\ApplicationManagement\Http\Controllers\PackageController;
 use App\Domains\Transaction\Http\Controllers\CreditCardController;
 use App\Domains\Transaction\Http\Controllers\PaymentMethodController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Domains\AccountManagement\Http\Controllers\InvitedUserController;
 

@@ -15,10 +15,10 @@ class InvitedUserController extends Controller
         return $invitationFriendService->GetInvitationLink($request);
     }
 
-    public function check($referral_key, InvitedUserRequest $request, SmsService $smsService)
+    public function check(InvitedUserRequest $request, SmsService $smsService)
     {
         // limit the request to 5 times
-        //return $smsService->sendOTP($request->get('mobile_number'));
+        return $smsService->sendOTP($request->get('mobile_number'));
     }
 
     public function create($referral_key, InvitedUserRequest $request, InvitationFriendService $invitationFriendService)

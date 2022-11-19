@@ -16,7 +16,7 @@ class SendClientAppNotification
     protected string $title;
     protected string $body;
 
-    public function __construct(Model $model, string $title, string $body)
+    public function __construct(Model $model, string $title, string $body,?array $listeners)
     {
         $this->model = $model;
         $this->title = $title;

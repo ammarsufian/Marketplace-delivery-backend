@@ -20,17 +20,20 @@ class SmsService
 
     public function sendOTP(string $mobile_number)
     {
-//        $otp = mt_rand(111111, 888888);
-//        $attributes = [
-//            'user' => 'testUser',
-//            'pass' => 12345,
-//            'sid' => 'Test',
-//            'mno' => $mobile_number,
-//            'type' => 1,
-//            'text' => 'You Otp is ' . $otp
-//        ];
-        Redis::set($mobile_number, 1234);
-//        $this->client->get($this->url . http_build_query($attributes));
+        $otp = mt_rand(111111, 888888);
+        $attributes = [
+            'user' => 'Cova',
+            'pass' => 'Cov1913',
+            'sid' => 'COVA APP-AD',//cova
+            'mno' => $mobile_number,
+            'type' => 1,
+            'text' => 'Your registration Otp is : ' . $otp
+        ];
+        Redis::set($mobile_number, $otp);
+
+        $response = $this->client->get($this->url . '?' . http_build_query($attributes), [
+            'accept' => 'application/json'
+        ]);
 
         return true;
     }

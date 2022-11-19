@@ -18,10 +18,10 @@ use Illuminate\Support\Facades\Auth;
 class AuthenticationService
 {
 
-    public function login(LoginUserRequest $request,string $roleName)
+    public function login(LoginUserRequest $request, string $roleName)
     {
         try {
-            $user = (new LoginUserAction($request,$roleName))->execute();
+            $user = (new LoginUserAction($request, $roleName))->execute();
 
         } catch (Exception $exception) {
             return response()->json([
@@ -87,7 +87,7 @@ class AuthenticationService
     {
         try {
 
-            Auth::user()->update(['is_active'=> $request->get('is_active',false)]);
+            Auth::user()->update(['is_active' => $request->get('is_active', false)]);
 
         } catch (Exception $exception) {
             return response()->json([
