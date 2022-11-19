@@ -7,19 +7,21 @@ use App\Domains\ApplicationManagement\Http\Controllers\VersionController;
 use App\Domains\Authentication\Http\Controllers\AuthenticationController;
 use App\Domains\Authentication\Http\Controllers\DeactivateUserController;
 use App\Domains\Authentication\Http\Controllers\FirebaseController;
+use App\Domains\Authentication\Http\Controllers\GuestModeController;
 use App\Domains\OrderManagement\Http\Controllers\ApplyPromoCodeController;
 use App\Domains\OrderManagement\Http\Controllers\CartController;
 use App\Domains\OrderManagement\Http\Controllers\DeleteCartItemController;
 use App\Domains\OrderManagement\Http\Controllers\OrderController;
 use App\Domains\ProductManagement\Http\Controllers\EntityProductController;
 use App\Domains\ProductManagement\Http\Controllers\FavoriteController;
-use App\Domains\AccountManagement\Http\Controllers\EditProfileController;
+use App\Domains\AccountManagement\Http\Controllers\ProfileController;
 use App\Domains\ApplicationManagement\Http\Controllers\PackageController;
 use App\Domains\Transaction\Http\Controllers\CreditCardController;
 use App\Domains\Transaction\Http\Controllers\PaymentMethodController;
 use Illuminate\Support\Facades\Route;
 use App\Domains\AccountManagement\Http\Controllers\InvitedUserController;
 
+Route::post('guest',GuestModeController::class);
 Route::prefix('user')->group(function () {
     Route::post('/login', [AuthenticationController::class, 'login']);
     Route::post('/register', [AuthenticationController::class, 'register']);
@@ -29,7 +31,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/logout', [AuthenticationController::class, 'logout']);
         Route::put('/fcm-token', FirebaseController::class);
         Route::resource('address', AddressesController::class);
-        Route::put('/profile', [EditProfileController::class, 'update']);
+        Route::put('/profile', [ProfileController::class, 'update']);
+        Route::get('/profile', [ProfileController::class, 'update']);
         Route::resource('/credit-card', CreditCardController::class);
         Route::post('/deactivate', DeactivateUserController::class);
         Route::get('/invitation-link', [InvitedUserController::class,'index']);

@@ -7,7 +7,7 @@ use Spatie\Permission\Models\Role;
 
 class UserRolePermissionSeeder extends Seeder
 {
-    protected array $roles = ['application', 'provider', 'driver', 'driver-management', 'manager','super-admin'];
+    protected array $roles = ['application', 'provider', 'driver', 'driver-management', 'manager','super-admin','guest'];
 
     /**
      * Run the database seeds.
@@ -24,6 +24,5 @@ class UserRolePermissionSeeder extends Seeder
         collect($this->roles)->each(function ($role) {
             Role::updateOrCreate(['name' => $role, 'guard_name' => 'web']);
         });
-
     }
 }
